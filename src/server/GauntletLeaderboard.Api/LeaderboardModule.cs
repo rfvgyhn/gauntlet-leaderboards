@@ -52,13 +52,13 @@
             {
                 int id = parameters.id;
                 var query = this.Bind<Query>();
-                var result = leaderboardService.GetLeaderboardEntries(id, query.Page.HasValue ? query.Page.Value : 0, query.PageSize.HasValue ? query.PageSize.Value : 20);
+                var result = leaderboardService.GetLeaderboardEntries(id, query.Page.HasValue ? query.Page.Value : 1, query.PageSize.HasValue ? query.PageSize.Value : 20);
 
-                return PrepareResult(result);
+                return PrepareResult(result, query);
             };
         }
 
-        private dynamic PrepareResult<T>(T model)
+        private dynamic PrepareResult<T>(T model, Query query = null)
         {
             var pagedResult = model as IPagedResult<object>;
             var enumerableResult = model as IEnumerable<object>;
@@ -70,8 +70,10 @@
                 var root = typeName.Pluralize();
                 var url = new UriBuilder(this.Request.Url);
                 var queryString = HttpUtility.ParseQueryString(this.Request.Url.Query);
-                queryString.Set("pageSize", pagedResult.PageSize.ToString());
                 dynamic links = new ExpandoObject();
+
+                if (query.PageSize.HasValue)
+                    queryString.Set("pageSize", pagedResult.PageSize.ToString());
 
                 if (pagedResult.Next != null)
                 {
@@ -87,7 +89,7 @@
                     links.Previous = url.ToString();
                 }
 
-                queryString.Set("page", pagedResult.First.ToString());
+                queryString.Remove("page");
                 url.Query = queryString.AllKeys.Select(a => a + "=" + HttpUtility.UrlEncode(queryString[a])).JoinWith("&");
                 links.First = url.ToString();
 

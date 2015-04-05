@@ -110,8 +110,8 @@ namespace GauntletLeaderboard.Api.Services
 
         private IEnumerable<Entry> FetchLeaderboardEntries(WebClient client, int id, int page, int pageSize, CacheItemPolicy cacheItemPolicy, out int totalItems)
         {
-            var start = (page * pageSize) + 1;
-            var end = (page * pageSize) + pageSize;
+            var start = ((page - 1) * pageSize) + 1;
+            var end = ((page - 1) * pageSize) + pageSize;
             var url = this.leaderboardUrl.Replace("{id}", id.ToString())
                                          .Replace("{start}", start.ToString())
                                          .Replace("{end}", end.ToString());

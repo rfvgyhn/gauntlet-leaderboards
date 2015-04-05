@@ -24,7 +24,7 @@ namespace GauntletLeaderboard.Api
             PageIndex = currentPage;
             Page = items;
             PageSize = pageSize;
-            First = 0;
+            First = 1;
             Last = PageCount;
             Next = currentPage == Last ? (int?)null : currentPage + 1;
             Previous = currentPage == First ? (int?)null : currentPage - 1;
