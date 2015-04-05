@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 namespace GauntletLeaderboard.Api.Model
 {
     [XmlRoot("entry")]
-    public class LeaderboardEntry
+    public class Entry
     {
         [XmlElement("steamid")]
         public string SteamId { get; set; }

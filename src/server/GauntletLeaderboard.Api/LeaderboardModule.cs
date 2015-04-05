@@ -3,6 +3,13 @@
     using GauntletLeaderboard.Api.Services;
     using Nancy;
     using Nancy.ModelBinding;
+    using System.Collections.Generic;
+    using GauntletLeaderboard.Api.Extensions;
+    using Humanizer;
+    using System;
+    using System.Web;
+    using System.Dynamic;
+    using System.Linq;
 
     public class LeaderboardModule : NancyModule
     {
@@ -11,43 +18,97 @@
         {
             Get["/"] = parameters =>
             {
-                var groups = leaderboardService.GetLeaderboardGroups();
+                var result = leaderboardService.GetLeaderboardGroups();
 
-                return Negotiate.WithModel(groups);
+                return PrepareResult(result);
             };
+
             Get["/{group}"] = parameters =>
             {
                 string group = parameters.group;
-                var leaderboards = leaderboardService.GetSubGroups(group);
+                var result = leaderboardService.GetSubGroups(group);
 
-                return Negotiate.WithModel(leaderboards);
+                return PrepareResult(result);
             };
 
             Get["/{group}/{subgroup}"] = parameters =>
             {
                 string group = parameters.group;
                 string subGroup = parameters.subGroup;
-                var leaderboards = leaderboardService.GetLeaderboardsBySubGroup(group, subGroup);
+                var result = leaderboardService.GetLeaderboardsBySubGroup(group, subGroup);
 
-                return Negotiate.WithModel(leaderboards);
+                return PrepareResult(result);
             };
 
             Get["/{id:int}"] = parameters =>
             {
                 int id = parameters.id;
-                var leaderboard = leaderboardService.GetLeaderboard(id);
+                var result = leaderboardService.GetLeaderboard(id);
 
-                return Negotiate.WithModel(leaderboard);
+                return PrepareResult(result);
             };
 
             Get["/{id:int}/entries"] = parameters =>
             {
                 int id = parameters.id;
                 var query = this.Bind<Query>();
-                var entries = leaderboardService.GetLeaderboardEntries(id, query.Page, query.PageSize);
+                var result = leaderboardService.GetLeaderboardEntries(id, query.Page, query.PageSize);
 
-                return Negotiate.WithModel(entries);
+                return PrepareResult(result);
             };
+        }
+
+        private dynamic PrepareResult<T>(T model)
+        {
+            var pagedResult = model as IPagedResult<object>;
+            var enumerableResult = model as IEnumerable<object>;
+            var typeName = model.GetType().GetInnerTypeName();
+            var result = new Dictionary<string, object>();
+            
+            if (pagedResult != null)
+            {
+                var root = typeName.Pluralize();
+                var url = new UriBuilder(this.Request.Url);
+                var queryString = HttpUtility.ParseQueryString(this.Request.Url.Query);
+                queryString.Set("pageSize", pagedResult.PageSize.ToString());
+                dynamic links = new ExpandoObject();
+
+                if (pagedResult.Next != null)
+                {
+                    queryString.Set("page", pagedResult.Next.Value.ToString());
+                    url.Query = queryString.AllKeys.Select(a => a + "=" + HttpUtility.UrlEncode(queryString[a])).JoinWith("&");
+                    links.Next = url.ToString();
+                }
+
+                if (pagedResult.Previous != null)
+                {
+                    queryString.Set("page", pagedResult.Previous.Value.ToString());
+                    url.Query = queryString.AllKeys.Select(a => a + "=" + HttpUtility.UrlEncode(queryString[a])).JoinWith("&");
+                    links.Previous = url.ToString();
+                }
+
+                queryString.Set("page", pagedResult.First.ToString());
+                url.Query = queryString.AllKeys.Select(a => a + "=" + HttpUtility.UrlEncode(queryString[a])).JoinWith("&");
+                links.First = url.ToString();
+
+                queryString.Set("page", pagedResult.Last.ToString());
+                url.Query = queryString.AllKeys.Select(a => a + "=" + HttpUtility.UrlEncode(queryString[a])).JoinWith("&");
+                links.Last = url.ToString();
+
+                result[root] = pagedResult.Page;
+                result["links"] = links;
+            }
+            else if (enumerableResult != null)
+            {
+                var root = typeName.Pluralize();
+                result[root] = enumerableResult;
+            }
+            else
+            {
+                result[typeName] = model;
+            }
+
+            return result;
         }
     }
 }

@@ -11,6 +11,11 @@ namespace GauntletLeaderboard.Api
         public int TotalItemCount { get; private set; }
         public int PageIndex { get; private set; }
         public IEnumerable<T> Page { get; private set; }
+        public int PageSize { get; private set; }
+        public int First { get; private set; }
+        public int Last { get; private set; }
+        public int? Next { get; private set; }
+        public int? Previous { get; private set; }
 
         public PagedResult(IEnumerable<T> items, int currentPage, int pageSize, int totalItems)
         {
@@ -18,6 +23,11 @@ namespace GauntletLeaderboard.Api
             TotalItemCount = totalItems;
             PageIndex = currentPage;
             Page = items;
+            PageSize = pageSize;
+            First = 0;
+            Last = PageCount;
+            Next = currentPage == Last ? (int?)null : currentPage + 1;
+            Previous = currentPage == First ? (int?)null : currentPage - 1;
         }
 
         public IEnumerator<T> GetEnumerator()

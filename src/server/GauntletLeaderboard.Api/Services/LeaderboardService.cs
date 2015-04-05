@@ -28,29 +28,31 @@ namespace GauntletLeaderboard.Api.Services
             this.cache = cache;
         }
 
-        public IEnumerable<LeaderboardGroup> GetLeaderboardGroups()
+        public IEnumerable<Group> GetLeaderboardGroups()
         {
             return this.leaderboardRepository
                        .GetLeaderboards()
                        .GroupBy(l => l.Group)
-                       .Select(g => new LeaderboardGroup
+                       .Select(g => new Group
                        {
                            Name = g.Key,
                            IsActive = g.Any(l => l.IsActive)
-                       });
+                       })
+                       .ToArray();
         }
 
-        public IEnumerable<LeaderboardGroup> GetSubGroups(string groupName)
+        public IEnumerable<Group> GetSubGroups(string groupName)
         {
             return this.leaderboardRepository
                        .GetLeaderboards()
                        .Where(l => l.Group.Equals(groupName, StringComparison.OrdinalIgnoreCase))
                        .GroupBy(l => l.SubGroup)
-                       .Select(g => new LeaderboardGroup
+                       .Select(g => new Group
                        {
                            Name = g.Key,
                            IsActive = g.Any(l => l.IsActive)
-                       });
+                       })
+                       .ToArray();
         }
 
         public IEnumerable<Leaderboard> GetLeaderboardsBySubGroup(string groupName, string subGroup)
@@ -66,7 +68,8 @@ namespace GauntletLeaderboard.Api.Services
                            IsActive = l.IsActive,
                            Group = l.Group,
                            SubGroup = l.SubGroup
-                       });
+                       })
+                       .ToArray();
         }
 
         public Leaderboard GetLeaderboard(int id)
@@ -85,9 +88,9 @@ namespace GauntletLeaderboard.Api.Services
                        .Single();
         }
 
-        public IPagedResult<LeaderboardEntry> GetLeaderboardEntries(int id, int page, int pageSize)
+        public IPagedResult<Entry> GetLeaderboardEntries(int id, int page, int pageSize)
         {
-            var entries = Enumerable.Empty<LeaderboardEntry>();
+            var entries = Enumerable.Empty<Entry>();
             IEnumerable<SteamProfile> profiles = null;
             var cacheItemPolicy = new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.UtcNow.AddMinutes(1) };
             int totalItems;
@@ -105,7 +108,7 @@ namespace GauntletLeaderboard.Api.Services
             return entries.ToPagedResult(page, pageSize, 0);
         }
 
-        private IEnumerable<LeaderboardEntry> FetchLeaderboardEntries(WebClient client, int id, int page, int pageSize, CacheItemPolicy cacheItemPolicy, out int totalItems)
+        private IEnumerable<Entry> FetchLeaderboardEntries(WebClient client, int id, int page, int pageSize, CacheItemPolicy cacheItemPolicy, out int totalItems)
         {
             var start = (page * pageSize) + 1;
             var end = (page * pageSize) + pageSize;
@@ -120,7 +123,7 @@ namespace GauntletLeaderboard.Api.Services
                 total = int.Parse(doc.Root.Elements("totalLeaderboardEntries").Single().Value);
 
                 return doc.Root.Descendants("entry")
-                               .Deserialize<LeaderboardEntry>()
+                               .Deserialize<Entry>()
                                .ToArray();
             }, cacheItemPolicy);
             totalItems = total;

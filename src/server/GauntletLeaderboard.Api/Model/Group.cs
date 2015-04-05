@@ -5,7 +5,7 @@ using System.Web;
 
 namespace GauntletLeaderboard.Api.Model
 {
-    public class LeaderboardGroup
+    public class Group
     {
         public string Name { get; set; }
         public bool IsActive { get; set; }
