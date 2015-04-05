@@ -88,23 +88,15 @@ namespace GauntletLeaderboard.Api.Services
         public IPagedResult<LeaderboardEntry> GetLeaderboardEntries(int id, int page, int pageSize)
         {
             var entries = Enumerable.Empty<LeaderboardEntry>();
-            SteamProfile[] profiles = null;
-            var start = (page * pageSize) + 1;
-            var end = (page * pageSize) + pageSize;
-            var url = this.leaderboardUrl.Replace("{id}", id.ToString())
-                                         .Replace("{start}", start.ToString())
-                                         .Replace("{end}", end.ToString());
+            IEnumerable<SteamProfile> profiles = null;
+            var cacheItemPolicy = new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.UtcNow.AddMinutes(1) };
             int totalItems;
 
             using (var client = new WebClient())
             {   
-                entries = ParseLeaderboardEntiresFromXml(client.DownloadString(url), id, page, pageSize, out totalItems);
-                var steamIds = entries.Select(e => e.SteamId)
-                                      .JoinWith(",");
-
-                url = this.profileUrl.Replace("{steamids}", steamIds);
-                var json = JObject.Parse(client.DownloadString(url));
-                profiles = json["response"]["players"].ToObject<SteamProfile[]>();
+                entries = FetchLeaderboardEntries(client, id, page, pageSize, cacheItemPolicy, out totalItems);
+                var steamIds = entries.Select(e => e.SteamId);
+                profiles = FetchSteamProfiles(client, steamIds, cacheItemPolicy);
             }
 
             foreach (var entry in entries)
@@ -113,14 +105,41 @@ namespace GauntletLeaderboard.Api.Services
             return entries.ToPagedResult(page, pageSize, 0);
         }
 
-        private IEnumerable<LeaderboardEntry> ParseLeaderboardEntiresFromXml(string xml, int id, int page, int pageSize, out int totalItems)
+        private IEnumerable<LeaderboardEntry> FetchLeaderboardEntries(WebClient client, int id, int page, int pageSize, CacheItemPolicy cacheItemPolicy, out int totalItems)
         {
-            var doc = XDocument.Parse(xml);
-            totalItems = int.Parse(doc.Root.Elements("totalLeaderboardEntries").Single().Value);
+            var start = (page * pageSize) + 1;
+            var end = (page * pageSize) + pageSize;
+            var url = this.leaderboardUrl.Replace("{id}", id.ToString())
+                                         .Replace("{start}", start.ToString())
+                                         .Replace("{end}", end.ToString());
+            var total = 0;
+            var key = "leaderboardEntires:{0}:{1}:{2}".FormatWith(id, page, pageSize);
+            var entries = this.cache.GetOrAdd(key, () =>
+            {
+                var doc = XDocument.Parse(client.DownloadString(url));
+                total = int.Parse(doc.Root.Elements("totalLeaderboardEntries").Single().Value);
 
-            return doc.Root.Descendants("entry")
-                           .Deserialize<LeaderboardEntry>()
-                           .ToArray();
+                return doc.Root.Descendants("entry")
+                               .Deserialize<LeaderboardEntry>()
+                               .ToArray();
+            }, cacheItemPolicy);
+            totalItems = total;
+
+            return entries;
+        }
+
+        private IEnumerable<SteamProfile> FetchSteamProfiles(WebClient client, IEnumerable<string> steamIds, CacheItemPolicy cacheItemPolicy)
+        {
+            var steamIdsParam = steamIds.JoinWith(",");
+            var key = "steamProfiles:{0}".FormatWith(steamIdsParam);
+
+            return this.cache.GetOrAdd(key, () =>
+            {
+                var url = this.profileUrl.Replace("{steamids}", steamIdsParam);
+                var json = JObject.Parse(client.DownloadString(url));
+
+                return json["response"]["players"].ToObject<SteamProfile[]>();
+            }, cacheItemPolicy);
         }
     }
 }
