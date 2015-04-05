@@ -52,7 +52,7 @@
             {
                 int id = parameters.id;
                 var query = this.Bind<Query>();
-                var result = leaderboardService.GetLeaderboardEntries(id, query.Page, query.PageSize);
+                var result = leaderboardService.GetLeaderboardEntries(id, query.Page.HasValue ? query.Page.Value : 0, query.PageSize.HasValue ? query.PageSize.Value : 20);
 
                 return PrepareResult(result);
             };
