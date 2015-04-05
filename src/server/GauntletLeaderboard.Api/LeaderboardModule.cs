@@ -71,6 +71,7 @@
                 var url = new UriBuilder(this.Request.Url);
                 var queryString = HttpUtility.ParseQueryString(this.Request.Url.Query);
                 dynamic links = new ExpandoObject();
+                dynamic meta = new ExpandoObject();
 
                 if (query.PageSize.HasValue)
                     queryString.Set("pageSize", pagedResult.PageSize.ToString());
@@ -97,8 +98,11 @@
                 url.Query = queryString.AllKeys.Select(a => a + "=" + HttpUtility.UrlEncode(queryString[a])).JoinWith("&");
                 links.Last = url.ToString();
 
+                meta.total = pagedResult.TotalItemCount;
+
                 result[root] = pagedResult.Page;
                 result["links"] = links;
+                result["meta"] = meta;
             }
             else if (enumerableResult != null)
             {
