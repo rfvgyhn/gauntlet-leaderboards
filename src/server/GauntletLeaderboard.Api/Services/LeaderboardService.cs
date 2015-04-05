@@ -105,7 +105,7 @@ namespace GauntletLeaderboard.Api.Services
             foreach (var entry in entries)
                 entry.SteamProfile = profiles.Where(p => p.SteamId == entry.SteamId).Single();
 
-            return entries.ToPagedResult(page, pageSize, 0);
+            return entries.ToPagedResult(page, pageSize, totalItems);
         }
 
         private IEnumerable<Entry> FetchLeaderboardEntries(WebClient client, int id, int page, int pageSize, CacheItemPolicy cacheItemPolicy, out int totalItems)
