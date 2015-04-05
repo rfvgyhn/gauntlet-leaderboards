@@ -63,7 +63,9 @@ namespace GauntletLeaderboard.Api.Services
                        {
                            Id = l.Id,
                            Name = l.Name,
-                           IsActive = l.IsActive
+                           IsActive = l.IsActive,
+                           Group = l.Group,
+                           SubGroup = l.SubGroup
                        });
         }
 

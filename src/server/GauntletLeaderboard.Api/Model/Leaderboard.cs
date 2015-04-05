@@ -9,7 +9,6 @@ namespace GauntletLeaderboard.Api.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public IPagedResult<LeaderboardEntry> Entries { get; set; }
         public bool IsActive { get; set; }
         public string Group { get; set; }
         public string SubGroup { get; set; }
