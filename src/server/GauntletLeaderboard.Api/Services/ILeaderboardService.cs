@@ -12,6 +12,7 @@ namespace GauntletLeaderboard.Api.Services
         IEnumerable<LeaderboardGroup> GetLeaderboardGroups();
         IEnumerable<LeaderboardGroup> GetSubGroups(string groupName);
         IEnumerable<Leaderboard> GetLeaderboardsBySubGroup(string groupName, string subGroup);
-        Leaderboard GetLeaderboard(int id, int page, int pageSize);
+        Leaderboard GetLeaderboard(int id);
+        IPagedResult<LeaderboardEntry> GetLeaderboardEntries(int id, int page, int pageSize);
     }
 }

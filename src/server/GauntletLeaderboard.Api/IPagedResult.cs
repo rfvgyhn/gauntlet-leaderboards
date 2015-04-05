@@ -5,7 +5,7 @@ using System.Web;
 
 namespace GauntletLeaderboard.Api
 {
-    public interface IPagedResult<T>// : IEnumerable<T>
+    public interface IPagedResult<T> : IEnumerable<T>
     {
         int PageCount { get; }
         int TotalItemCount { get; }

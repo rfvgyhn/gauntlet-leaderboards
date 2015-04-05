@@ -35,10 +35,18 @@
             Get["/{id:int}"] = parameters =>
             {
                 int id = parameters.id;
-                var query = this.Bind<Query>();
-                var leaderboard = leaderboardService.GetLeaderboard(id, query.Page, query.PageSize);
+                var leaderboard = leaderboardService.GetLeaderboard(id);
 
                 return Negotiate.WithModel(leaderboard);
+            };
+
+            Get["/{id:int}/entries"] = parameters =>
+            {
+                int id = parameters.id;
+                var query = this.Bind<Query>();
+                var entries = leaderboardService.GetLeaderboardEntries(id, query.Page, query.PageSize);
+
+                return Negotiate.WithModel(entries);
             };
         }
     }

@@ -67,58 +67,58 @@ namespace GauntletLeaderboard.Api.Services
                        });
         }
 
-        public Leaderboard GetLeaderboard(int id, int page, int pageSize)
+        public Leaderboard GetLeaderboard(int id)
         {
-            Leaderboard leaderboard = null;
+            return this.leaderboardRepository
+                       .GetLeaderboards()
+                       .Where(l => l.Id == id)
+                       .Select(l => new Leaderboard
+                       {
+                           Group = l.Group,
+                           Id = l.Id,
+                           IsActive = l.IsActive,
+                           Name = l.Name,
+                           SubGroup = l.SubGroup
+                       })
+                       .Single();
+        }
+
+        public IPagedResult<LeaderboardEntry> GetLeaderboardEntries(int id, int page, int pageSize)
+        {
+            var entries = Enumerable.Empty<LeaderboardEntry>();
             SteamProfile[] profiles = null;
             var start = (page * pageSize) + 1;
             var end = (page * pageSize) + pageSize;
             var url = this.leaderboardUrl.Replace("{id}", id.ToString())
                                          .Replace("{start}", start.ToString())
                                          .Replace("{end}", end.ToString());
+            int totalItems;
 
             using (var client = new WebClient())
-            {
-                
-                leaderboard = ParseLeaderboardFromXml(client.DownloadString(url), id, page, pageSize);
-                var steamIds = leaderboard.Entries.Page
-                                          .Select(e => e.SteamId)
-                                          .JoinWith(",");
+            {   
+                entries = ParseLeaderboardEntiresFromXml(client.DownloadString(url), id, page, pageSize, out totalItems);
+                var steamIds = entries.Select(e => e.SteamId)
+                                      .JoinWith(",");
 
                 url = this.profileUrl.Replace("{steamids}", steamIds);
                 var json = JObject.Parse(client.DownloadString(url));
                 profiles = json["response"]["players"].ToObject<SteamProfile[]>();
             }
 
-            var entries = leaderboard.Entries.Page.ToArray();
             foreach (var entry in entries)
                 entry.SteamProfile = profiles.Where(p => p.SteamId == entry.SteamId).Single();
 
-            leaderboard.Entries = entries.ToPagedResult(page, pageSize, leaderboard.Entries.TotalItemCount);
-            return leaderboard;
+            return entries.ToPagedResult(page, pageSize, 0);
         }
 
-        private Leaderboard ParseLeaderboardFromXml(string xml, int id, int page, int pageSize)
+        private IEnumerable<LeaderboardEntry> ParseLeaderboardEntiresFromXml(string xml, int id, int page, int pageSize, out int totalItems)
         {
             var doc = XDocument.Parse(xml);
-            var totalItems = int.Parse(doc.Root.Elements("totalLeaderboardEntries").Single().Value);
-            var interestedLeaderboard = this.leaderboardRepository
-                                            .GetLeaderboards()
-                                            .Where(l => l.Id == id)
-                                            .Single();
-            var entries = doc.Root.Descendants("entry")
-                                  .Deserialize<LeaderboardEntry>()
-                                  .ToPagedResult(page, pageSize, totalItems);
+            totalItems = int.Parse(doc.Root.Elements("totalLeaderboardEntries").Single().Value);
 
-            return new Leaderboard
-            {
-                Id = id,
-                Name = interestedLeaderboard.Name,
-                Entries = entries,
-                IsActive = interestedLeaderboard.IsActive,
-                Group = interestedLeaderboard.Group,
-                SubGroup = interestedLeaderboard.SubGroup
-            };
+            return doc.Root.Descendants("entry")
+                           .Deserialize<LeaderboardEntry>()
+                           .ToArray();
         }
     }
 }

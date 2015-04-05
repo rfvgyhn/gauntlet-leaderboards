@@ -5,7 +5,7 @@ using System.Web;
 
 namespace GauntletLeaderboard.Api
 {
-    public class PagedResult<T> : IPagedResult<T>//, IEnumerable<T>
+    public class PagedResult<T> : IPagedResult<T>, IEnumerable<T>
     {
         public int PageCount { get; private set; }
         public int TotalItemCount { get; private set; }
@@ -20,14 +20,14 @@ namespace GauntletLeaderboard.Api
             Page = items;
         }
 
-        //public IEnumerator<T> GetEnumerator()
-        //{
-        //    return Page.GetEnumerator();
-        //}
+        public IEnumerator<T> GetEnumerator()
+        {
+            return Page.GetEnumerator();
+        }
 
-        //System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        //{
-        //    return Page.GetEnumerator();
-        //}
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return Page.GetEnumerator();
+        }
     }
 }
