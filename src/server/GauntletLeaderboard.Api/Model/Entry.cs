@@ -9,9 +9,9 @@ namespace GauntletLeaderboard.Api.Model
     [XmlRoot("entry")]
     public class Entry
     {
-        [XmlElement("steamid")]
+        [XmlElement("steamid")]  
         public string SteamId { get; set; }
-        public SteamProfile SteamProfile { get; set; }
+        public SteamProfile Player { get; set; }
         [XmlElement("score")]
         public int Score { get; set; }
         [XmlElement("rank")]

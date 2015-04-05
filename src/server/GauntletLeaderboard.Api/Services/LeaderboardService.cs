@@ -103,7 +103,7 @@ namespace GauntletLeaderboard.Api.Services
             }
 
             foreach (var entry in entries)
-                entry.SteamProfile = profiles.Where(p => p.SteamId == entry.SteamId).Single();
+                entry.Player = profiles.Where(p => p.SteamId == entry.SteamId).Single();
 
             return entries.ToPagedResult(page, pageSize, totalItems);
         }
