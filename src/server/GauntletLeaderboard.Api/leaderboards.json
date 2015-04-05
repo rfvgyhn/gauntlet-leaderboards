@@ -1,0 +1,51 @@
+﻿[
+    {
+        "id": 605889,
+        "name": "Lava 4",
+        "group":  "Colosseum",
+        "subGroup": "Season 3",
+        "isActive": true
+    },
+    {
+        "id": 605893,
+        "name": "Lava 6",
+        "group":  "Colosseum",
+        "subGroup": "Season 3",
+        "isActive": true
+    },
+    {
+        "id": 605841,
+        "name": "Crypt 4",
+        "group":  "Colosseum",
+        "subGroup": "Season 3",
+        "isActive": true
+    },
+    {
+        "id": 605897,
+        "name": "Crypt 6",
+        "group":  "Colosseum",
+        "subGroup": "Season 3",
+        "isActive": true
+    },
+    {
+        "id": 607169,
+        "name": "Caves 4",
+        "group":  "Colosseum",
+        "subGroup": "Season 3",
+        "isActive": true
+    },
+    {
+        "id": 607189,
+        "name": "Caves 6",
+        "group":  "Colosseum",
+        "subGroup": "Season 3",
+        "isActive": true
+    },
+    {
+        "id": 605842,
+        "name": "Overall",
+        "group":  "Colosseum",
+        "subGroup": "Season 3",
+        "isActive": true
+    }
+]
