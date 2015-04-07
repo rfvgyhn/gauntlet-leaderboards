@@ -27,6 +27,7 @@
             var profileUrl = WebConfigurationManager.AppSettings["profileUrl"];
 
             container.Register<IInterestedLeaderboardRepository>((c, p) => new FileInterestedLeaderboardRepository(Path.Combine(container.Resolve<IRootPathProvider>().GetRootPath(), "leaderboards.json"), c.Resolve<ObjectCache>()));
+            container.Register<IGroupService, GroupService>();
             container.Register<ILeaderboardService>((c, p) => new LeaderboardService(steamApiKey, profileUrl, leaderboardUrl, c.Resolve<IInterestedLeaderboardRepository>(), c.Resolve<ObjectCache>()));
         }
     }

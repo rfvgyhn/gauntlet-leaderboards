@@ -28,29 +28,33 @@ namespace GauntletLeaderboard.Api.Services
             this.cache = cache;
         }
 
-        public IEnumerable<Group> GetLeaderboardGroups()
+        public IEnumerable<Leaderboard> All()
         {
             return this.leaderboardRepository
                        .GetLeaderboards()
-                       .GroupBy(l => l.Group)
-                       .Select(g => new Group
+                       .Select(l => new Leaderboard
                        {
-                           Name = g.Key,
-                           IsActive = g.Any(l => l.IsActive)
+                           Id = l.Id,
+                           Name = l.Name,
+                           IsActive = l.IsActive,
+                           Group = l.Group,
+                           SubGroup = l.SubGroup
                        })
                        .ToArray();
         }
 
-        public IEnumerable<Group> GetSubGroups(string groupName)
+        public IEnumerable<Leaderboard> GetLeaderboardsByGroup(string groupName)
         {
             return this.leaderboardRepository
                        .GetLeaderboards()
                        .Where(l => l.Group.Equals(groupName, StringComparison.OrdinalIgnoreCase))
-                       .GroupBy(l => l.SubGroup)
-                       .Select(g => new Group
+                       .Select(l => new Leaderboard
                        {
-                           Name = g.Key,
-                           IsActive = g.Any(l => l.IsActive)
+                           Id = l.Id,
+                           Name = l.Name,
+                           IsActive = l.IsActive,
+                           Group = l.Group,
+                           SubGroup = l.SubGroup
                        })
                        .ToArray();
         }

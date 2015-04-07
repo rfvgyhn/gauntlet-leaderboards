@@ -79,10 +79,12 @@
     <Compile Include="Data\FileInterestedLeaderboardRepository.cs" />
     <Compile Include="Data\IInterestedLeaderboardRepository.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="Extensions\NancyModuleExtensions.cs" />
     <Compile Include="Extensions\ObjectCacheExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Extensions\XElementExtensions.cs" />
+    <Compile Include="GroupModule.cs" />
     <Compile Include="LeaderboardModule.cs" />
     <Compile Include="Model\InterestedLeaderboard.cs" />
     <Compile Include="Model\Leaderboard.cs" />
@@ -93,6 +95,8 @@
     <Compile Include="PagedResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query.cs" />
+    <Compile Include="Services\GroupService.cs" />
+    <Compile Include="Services\IGroupService.cs" />
     <Compile Include="Services\ILeaderboardService.cs" />
     <Compile Include="Services\LeaderboardService.cs" />
   </ItemGroup>
