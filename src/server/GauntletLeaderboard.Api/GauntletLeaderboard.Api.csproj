@@ -75,7 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="CamelCaseJsonSerializer.cs" />
+    <Compile Include="GauntletLeaderboardJsonSerializer.cs" />
     <Compile Include="Data\FileInterestedLeaderboardRepository.cs" />
     <Compile Include="Data\IInterestedLeaderboardRepository.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
@@ -84,8 +84,9 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Extensions\XElementExtensions.cs" />
-    <Compile Include="GroupModule.cs" />
-    <Compile Include="LeaderboardModule.cs" />
+    <Compile Include="Model\SubGroup.cs" />
+    <Compile Include="Modules\GroupModule.cs" />
+    <Compile Include="Modules\LeaderboardModule.cs" />
     <Compile Include="Model\InterestedLeaderboard.cs" />
     <Compile Include="Model\Leaderboard.cs" />
     <Compile Include="Model\Entry.cs" />

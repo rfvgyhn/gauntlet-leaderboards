@@ -10,6 +10,7 @@ namespace GauntletLeaderboard.Api.Services
     public interface IGroupService
     {
         IEnumerable<Group> All();
-        IEnumerable<Group> GetSubGroups(string group);
+        Group GetByName(string groupName);
+        IEnumerable<SubGroup> GetSubGroups(string groupName);
     }
 }

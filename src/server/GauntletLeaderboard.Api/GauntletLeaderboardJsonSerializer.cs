@@ -9,15 +9,16 @@ using System.Web;
 
 namespace GauntletLeaderboard.Api
 {
-    public class CamelCaseJsonSerializer : ISerializer
+    public class GauntletLeaderboardJsonSerializer : ISerializer
     {
         private readonly JsonSerializer _serializer;
 
-        public CamelCaseJsonSerializer()
+        public GauntletLeaderboardJsonSerializer()
         {
             var settings = new JsonSerializerSettings
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                NullValueHandling = NullValueHandling.Ignore
             };
 
             _serializer = JsonSerializer.Create(settings);
