@@ -128,6 +128,7 @@ namespace GauntletLeaderboard.Api.Services
 
                 return doc.Root.Descendants("entry")
                                .Deserialize<Entry>()
+                               .OrderBy(e => e.Rank)
                                .ToArray();
             }, cacheItemPolicy);
             totalItems = total;
