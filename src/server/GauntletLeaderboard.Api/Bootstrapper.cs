@@ -31,18 +31,15 @@
             container.Register<ILeaderboardService>((c, p) => new LeaderboardService(steamApiKey, profileUrl, leaderboardUrl, c.Resolve<IInterestedLeaderboardRepository>(), c.Resolve<ObjectCache>()));
         }
 
-        protected override void RequestStartup(TinyIoCContainer container, IPipelines pipelines, NancyContext context)
+        protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
-            base.RequestStartup(container, pipelines, context);
-
-            pipelines.AfterRequest.AddItemToEndOfPipeline((ctx) =>
+            pipelines.AfterRequest += (ctx) =>
             {
                 var allowedOrigins = WebConfigurationManager.AppSettings["allowedOrigins"];
                 ctx.Response.WithHeader("Access-Control-Allow-Origin", allowedOrigins)
-                            .WithHeader("Access-Control-Allow-Methods", "GET")
+                            .WithHeader("Access-Control-Allow-Methods", "GET OPTIONS")
                             .WithHeader("Access-Control-Allow-Headers", "Accept, Origin, Content-type");
-
-            });
+            };
         }
     }
 }
