@@ -5,11 +5,5 @@ export default DS.RESTSerializer.extend({
         hash.id = hash.id.dasherize();
 
         return this._super.apply(this, arguments);
-    },
-    serialize: function() {
-        var json = this._super.apply(this, arguments);
-        json.id = json.id.replace(/\-/, "");
-
-        return json;
     }
 });
