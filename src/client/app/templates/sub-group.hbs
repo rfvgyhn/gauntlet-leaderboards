@@ -1,0 +1,9 @@
+sub-group.hbs
+
+<ul>
+  {{#each group in model.subGroups}}
+    <li>{{#link-to "leaderboards" group}}{{group.name}}{{/link-to}}</li>
+  {{/each}}
+</ul>
+
+{{outlet}}

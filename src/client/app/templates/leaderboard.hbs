@@ -1,0 +1,10 @@
+{{model.name}}
+<table>
+{{#each entry in model.entries}}
+    <tr>
+        <td>{{entry.rank}}</td>
+        <td>{{entry.player.personaName}}</td>
+    </tr>
+{{/each}}
+</table>
+{{outlet}}
