@@ -1,8 +1,8 @@
-groups.hbs
-
-<ul>
+<ul class="nav nav-pills">
   {{#each group in model}}
-    <li>{{#link-to "sub-group" group}}{{group.name}}{{/link-to}}</li>
+    {{#link-to "sub-group" group tagName="li"}}
+        {{#link-to "sub-group" group}}{{group.name}}{{/link-to}}
+    {{/link-to}}
   {{/each}}
 </ul>
 

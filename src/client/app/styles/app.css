@@ -1,0 +1,8 @@
+#leaderboard td:first-child {
+    width: 3rem;
+}
+
+#leaderboard td:last-child {
+    width: 8rem;
+    text-align: right;
+}

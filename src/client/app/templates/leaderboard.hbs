@@ -1,11 +1,21 @@
-{{model.name}} - {{model.special}}
-<table>
-{{#each entry in model.entries}}
-    <tr>
-        <td>{{entry.rank}}</td>
-        <td>{{entry.player.personaName}}</td>
-        <td>{{entry.score}}</td>
-    </tr>
-{{/each}}
-</table>
-{{outlet}}
+<div id="leaderboard">
+    <div class="text-center">Special: {{model.special}}</div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+        {{#each entry in model.entries}}
+            <tr>
+                <td>{{entry.rank}}</td>
+                <td>{{entry.player.personaName}}</td>
+                <td>{{entry.score}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>
