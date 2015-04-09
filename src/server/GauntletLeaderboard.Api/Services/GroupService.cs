@@ -43,7 +43,23 @@ namespace GauntletLeaderboard.Api.Services
                        .Single();
         }
 
-        public IEnumerable<SubGroup> GetSubGroups(string groupName)
+        public IEnumerable<SubGroup> GetSubGroupsByName(string subGroupName)
+        {
+            return this.leaderboardRepository
+                       .GetLeaderboards()
+                       .Where(l => l.SubGroup.Equals(subGroupName, StringComparison.OrdinalIgnoreCase))
+                       .Select(l => new SubGroup
+                       {
+                           Group = l.Group,
+                           Name = l.SubGroup,
+                           IsActive = l.IsActive
+                       })
+                       .GroupBy(l => l.Name)
+                       .Select(g => g.First())
+                       .ToArray();
+        }
+
+        public IEnumerable<SubGroup> GetSubGroupsByGroup(string groupName)
         {
             return this.leaderboardRepository
                        .GetLeaderboards()

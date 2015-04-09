@@ -8,6 +8,7 @@ namespace GauntletLeaderboard.Api
     public class ModuleRoute
     {
         public const string Group = "/groups";
+        public const string SubGroup = "/subgroups";
         public const string Leaderboard = "/leaderboards";
     }
 }

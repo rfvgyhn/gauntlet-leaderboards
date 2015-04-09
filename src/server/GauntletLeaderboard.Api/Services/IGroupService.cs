@@ -11,6 +11,7 @@ namespace GauntletLeaderboard.Api.Services
     {
         IEnumerable<Group> All();
         Group GetByName(string groupName);
-        IEnumerable<SubGroup> GetSubGroups(string groupName);
+        IEnumerable<SubGroup> GetSubGroupsByName(string subGroupName);
+        IEnumerable<SubGroup> GetSubGroupsByGroup(string groupName);
     }
 }
