@@ -12,6 +12,7 @@ namespace GauntletLeaderboard.Api.Model
         public bool IsActive { get; set; }
         public string Group { get; set; }
         public string SubGroup { get; set; }
+        public string Special { get; set; }
         public IEnumerable<Entry> Entries { get; set; }
     }
 }

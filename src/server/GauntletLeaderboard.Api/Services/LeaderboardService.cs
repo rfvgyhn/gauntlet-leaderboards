@@ -54,7 +54,8 @@ namespace GauntletLeaderboard.Api.Services
                            Name = l.Name,
                            IsActive = l.IsActive,
                            Group = l.Group,
-                           SubGroup = l.SubGroup
+                           SubGroup = l.SubGroup,
+                           Special = l.Special
                        })
                        .ToArray();
         }
@@ -71,7 +72,8 @@ namespace GauntletLeaderboard.Api.Services
                            Name = l.Name,
                            IsActive = l.IsActive,
                            Group = l.Group,
-                           SubGroup = l.SubGroup
+                           SubGroup = l.SubGroup,
+                           Special = l.Special
                        })
                        .ToArray();
         }
@@ -87,7 +89,8 @@ namespace GauntletLeaderboard.Api.Services
                            Id = l.Id,
                            IsActive = l.IsActive,
                            Name = l.Name,
-                           SubGroup = l.SubGroup
+                           SubGroup = l.SubGroup,
+                           Special = l.Special
                        })
                        .Single();
         }

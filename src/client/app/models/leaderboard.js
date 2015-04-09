@@ -4,5 +4,6 @@ export default DS.Model.extend({
   group: DS.attr(),
   subGroup: DS.attr(),
   name: DS.attr(),
-  entries: DS.hasMany("entry", {async: true} )
+  special: DS.attr(),
+  entries: DS.hasMany("entry", { async: true })
 });

@@ -4,6 +4,7 @@
         "name": "Lava 4",
         "group":  "Colosseum",
         "subGroup": "Season 3",
+        "special": "Twister",
         "isActive": true
     },
     {
@@ -11,6 +12,7 @@
         "name": "Lava 6",
         "group":  "Colosseum",
         "subGroup": "Season 3",
+        "special": "Twister",
         "isActive": true
     },
     {
@@ -18,6 +20,7 @@
         "name": "Crypt 4",
         "group":  "Colosseum",
         "subGroup": "Season 3",
+        "special": "Twister",
         "isActive": true
     },
     {
@@ -25,6 +28,7 @@
         "name": "Crypt 6",
         "group":  "Colosseum",
         "subGroup": "Season 3",
+        "special": "Twister",
         "isActive": true
     },
     {
@@ -32,6 +36,7 @@
         "name": "Caves 4",
         "group":  "Colosseum",
         "subGroup": "Season 3",
+        "special": "Twister",
         "isActive": true
     },
     {
@@ -39,6 +44,7 @@
         "name": "Caves 6",
         "group":  "Colosseum",
         "subGroup": "Season 3",
+        "special": "Twister",
         "isActive": true
     },
     {
@@ -46,6 +52,7 @@
         "name": "Overall",
         "group":  "Colosseum",
         "subGroup": "Season 3",
+        "special": "Twister",
         "isActive": true
     }
 ]
