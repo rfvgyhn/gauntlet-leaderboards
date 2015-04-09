@@ -74,6 +74,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModuleRoute.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="GauntletLeaderboardJsonSerializer.cs" />
     <Compile Include="Data\FileInterestedLeaderboardRepository.cs" />

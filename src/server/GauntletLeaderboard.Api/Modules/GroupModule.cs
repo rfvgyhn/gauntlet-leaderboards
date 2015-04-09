@@ -12,9 +12,11 @@ namespace GauntletLeaderboard.Api.Modules
     public class GroupModule : NancyModule
     {
         public GroupModule(IGroupService groupService)
-            : base("/groups")
+            : base(ModuleRoute.Group)
         {
-            Func<Group, string> subGroupsLinkGenerator = m => "/{name}/subgroups".Replace("{name}", m.Name);
+            Func<Group, string> subGroupsLinkGenerator = m => "{0}/subgroups".FormatWith(m.Name);
+            Func<SubGroup, string> leaderboardsLinkGenerator = m => ModuleRoute.Leaderboard + "/{0}/{1}".FormatWith(m.Group, m.Name);
+
             Get["/"] = parameters =>
             {
                 var result = groupService.All();
@@ -35,7 +37,7 @@ namespace GauntletLeaderboard.Api.Modules
                 string group = parameters.name;
                 var result = groupService.GetSubGroups(group);
 
-                return this.PrepareResult<SubGroup>(result);
+                return this.PrepareResult(result, leaderboardsLinkGenerator);
             };
         }
     }

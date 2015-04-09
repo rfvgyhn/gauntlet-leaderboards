@@ -11,20 +11,6 @@ namespace GauntletLeaderboard.Api.Extensions
 {
     public static class NancyModuleExtensions
     {
-        //public static dynamic PrepareResult<TResult>(this INancyModule module, TResult model)
-        //{
-        //    return PrepareResult<TResult, object>(module, model, null, null);
-        //}
-
-        //public static dynamic PrepareResult<TResult>(this INancyModule module, TResult model, Query query)
-        //{
-        //    return PrepareResult<TResult, object>(module, model, null, query);
-        //}
-
-        //public static dynamic PrepareResult<TResult, TModel>(this INancyModule module, TResult model, Func<TModel, string> linkFactory)
-        //{
-        //    return PrepareResult<TResult, TModel>(module, model, linkFactory, null);
-        //}
 
         public static dynamic PrepareResult<T>(this INancyModule module, IPagedResult<T> model, Query query, Func<T, string> linkFactory = null)
         {
@@ -79,10 +65,10 @@ namespace GauntletLeaderboard.Api.Extensions
             return result;
         }
 
-        public static IDictionary<string, T> PrepareResult<T>(this INancyModule module, T model, Func<T, string> linkFactory = null)
+        public static dynamic PrepareResult<T>(this INancyModule module, T model, Func<T, string> linkFactory = null)
         {
             var typeName = model.GetType().Name;
-            var result = new Dictionary<string, T>();
+            var result = new Dictionary<string, dynamic>();
 
             result[typeName] = AddLinks(module, model, linkFactory);
 
@@ -99,8 +85,12 @@ namespace GauntletLeaderboard.Api.Extensions
             {
                 if (linkFactory != null && property.PropertyType.IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(IEnumerable<>))
                 {
-                    var path = "{0}{1}".FormatWith(module.ModulePath, linkFactory(model));
-                    links.Add(property.Name, path);
+                    var path = linkFactory(model);
+
+                    if (!path.StartsWith("/"))
+                        path =  "{0}/{1}".FormatWith(module.ModulePath, path);
+
+                    links.Add(property.Name, path.ToLower());
                 }
                 else
                     result.Add(property.Name, property.GetValue(model));

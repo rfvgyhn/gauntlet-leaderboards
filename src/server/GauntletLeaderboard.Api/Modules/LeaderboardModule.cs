@@ -10,9 +10,9 @@ namespace GauntletLeaderboard.Api.Modules
     public class LeaderboardModule : NancyModule
     {
         public LeaderboardModule(ILeaderboardService leaderboardService)
-            : base("/leaderboards")
+            : base(ModuleRoute.Leaderboard)
         {
-            Func<Leaderboard, string> entriesLinkGenerator = m => "/{id}/entries".Replace("{id}", m.Id.ToString());
+            Func<Leaderboard, string> entriesLinkGenerator = m => "{0}/entries".FormatWith(m.Id);
 
             Get["/"] = parameters =>
             {

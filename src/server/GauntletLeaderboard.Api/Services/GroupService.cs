@@ -34,7 +34,7 @@ namespace GauntletLeaderboard.Api.Services
             return this.leaderboardRepository
                        .GetLeaderboards()
                        .GroupBy(l => l.Group)
-                       .Where(g => g.Key == groupName)
+                       .Where(g => g.Key.Equals(groupName, StringComparison.OrdinalIgnoreCase))
                        .Select(g => new Group
                        {
                            Name = g.Key,
@@ -48,12 +48,14 @@ namespace GauntletLeaderboard.Api.Services
             return this.leaderboardRepository
                        .GetLeaderboards()
                        .Where(l => l.Group.Equals(groupName, StringComparison.OrdinalIgnoreCase))
-                       .GroupBy(l => l.SubGroup)
-                       .Select(g => new SubGroup
+                       .Select(l => new SubGroup
                        {
-                           Name = g.Key,
-                           IsActive = g.Any(l => l.IsActive)
+                           Group = l.Group,
+                           Name = l.SubGroup,
+                           IsActive = l.IsActive
                        })
+                       .GroupBy(l => l.Name)
+                       .Select(g => g.First())
                        .ToArray();
         }
     }
