@@ -3,6 +3,9 @@
 
 key.config
 
+tmp/
+Scripts/
+
 # User-specific files
 *.suo
 *.user
