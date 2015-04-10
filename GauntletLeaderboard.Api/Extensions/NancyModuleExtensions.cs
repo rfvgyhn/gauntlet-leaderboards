@@ -1,11 +1,13 @@
-﻿using System;
+﻿using GauntletLeaderboard.Core;
+using GauntletLeaderboard.Core.Extensions;
+using Humanizer;
+using Nancy;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
-using Humanizer;
-using System.Dynamic;
-using Nancy;
-using System.ComponentModel;
 
 namespace GauntletLeaderboard.Api.Extensions
 {
@@ -88,7 +90,7 @@ namespace GauntletLeaderboard.Api.Extensions
                     var path = linkFactory(model);
 
                     if (!path.StartsWith("/"))
-                        path =  "{0}/{1}".FormatWith(module.ModulePath, path);
+                        path =  string.Format("{0}/{1}", module.ModulePath, path);
 
                     links.Add(property.Name, path.ToLower());
                 }

@@ -1,18 +1,14 @@
-﻿namespace GauntletLeaderboard.Api
-{
-    using GauntletLeaderboard.Api.Data;
-    using GauntletLeaderboard.Api.Services;
-    using Nancy;
-    using Nancy.Bootstrapper;
-    using Nancy.Json;
-    using Nancy.TinyIoc;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Serialization;
-    using System.IO;
-    using System.Runtime.Caching;
-    using System.Web.Configuration;
-    using System.Linq;
+﻿using GauntletLeaderboard.Core.Data;
+using GauntletLeaderboard.Core.Services;
+using Nancy;
+using Nancy.Bootstrapper;
+using Nancy.TinyIoc;
+using System.IO;
+using System.Runtime.Caching;
+using System.Web.Configuration;
 
+namespace GauntletLeaderboard.Api
+{
     public class Bootstrapper : DefaultNancyBootstrapper
     {
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)

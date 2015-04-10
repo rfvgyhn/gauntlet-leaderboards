@@ -1,11 +1,10 @@
-﻿using GauntletLeaderboard.Api.Services;
+﻿
+using GauntletLeaderboard.Api.Extensions;
+using GauntletLeaderboard.Core.Extensions;
+using GauntletLeaderboard.Core.Model;
+using GauntletLeaderboard.Core.Services;
 using Nancy;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using GauntletLeaderboard.Api.Extensions;
-using GauntletLeaderboard.Api.Model;
 
 namespace GauntletLeaderboard.Api.Modules
 {

@@ -77,31 +77,12 @@
     <Compile Include="ModuleRoute.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="GauntletLeaderboardJsonSerializer.cs" />
-    <Compile Include="Data\FileInterestedLeaderboardRepository.cs" />
-    <Compile Include="Data\IInterestedLeaderboardRepository.cs" />
-    <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\NancyModuleExtensions.cs" />
-    <Compile Include="Extensions\ObjectCacheExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Extensions\TypeExtensions.cs" />
-    <Compile Include="Extensions\XElementExtensions.cs" />
-    <Compile Include="Model\SubGroup.cs" />
     <Compile Include="Modules\GroupModule.cs" />
     <Compile Include="Modules\LeaderboardModule.cs" />
-    <Compile Include="Model\InterestedLeaderboard.cs" />
-    <Compile Include="Model\Leaderboard.cs" />
-    <Compile Include="Model\Entry.cs" />
-    <Compile Include="Model\Group.cs" />
-    <Compile Include="Model\SteamProfile.cs" />
-    <Compile Include="IPagedResult.cs" />
     <Compile Include="Modules\SubGroupModule.cs" />
-    <Compile Include="PagedResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query.cs" />
-    <Compile Include="Services\GroupService.cs" />
-    <Compile Include="Services\IGroupService.cs" />
-    <Compile Include="Services\ILeaderboardService.cs" />
-    <Compile Include="Services\LeaderboardService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -115,7 +96,12 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GauntletLeaderboard.Core\GauntletLeaderboard.Core.csproj">
+      <Project>{599b7eb8-a9ed-4154-a1c6-b49a99330121}</Project>
+      <Name>GauntletLeaderboard.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

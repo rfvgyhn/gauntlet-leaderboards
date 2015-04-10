@@ -1,6 +1,7 @@
 ﻿using GauntletLeaderboard.Api.Extensions;
-using GauntletLeaderboard.Api.Model;
-using GauntletLeaderboard.Api.Services;
+using GauntletLeaderboard.Core.Extensions;
+using GauntletLeaderboard.Core.Model;
+using GauntletLeaderboard.Core.Services;
 using Nancy;
 using Nancy.ModelBinding;
 using System;

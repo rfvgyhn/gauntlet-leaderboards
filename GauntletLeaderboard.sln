@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GauntletLeaderboard.Api", "GauntletLeaderboard.Api\GauntletLeaderboard.Api.csproj", "{ED638DD5-E755-4B7A-940D-5C94AB425686}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GauntletLeaderboard.Web", "GauntletLeaderboard.Web\GauntletLeaderboard.Web.csproj", "{A58A48E4-9935-457E-A92A-C17CA7E5D782}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GauntletLeaderboard.Core", "GauntletLeaderboard.Core\GauntletLeaderboard.Core.csproj", "{599B7EB8-A9ED-4154-A1C6-B49A99330121}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{ED638DD5-E755-4B7A-940D-5C94AB425686}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED638DD5-E755-4B7A-940D-5C94AB425686}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED638DD5-E755-4B7A-940D-5C94AB425686}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A58A48E4-9935-457E-A92A-C17CA7E5D782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A58A48E4-9935-457E-A92A-C17CA7E5D782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A58A48E4-9935-457E-A92A-C17CA7E5D782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A58A48E4-9935-457E-A92A-C17CA7E5D782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{599B7EB8-A9ED-4154-A1C6-B49A99330121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{599B7EB8-A9ED-4154-A1C6-B49A99330121}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{599B7EB8-A9ED-4154-A1C6-B49A99330121}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{599B7EB8-A9ED-4154-A1C6-B49A99330121}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
