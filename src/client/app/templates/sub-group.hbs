@@ -1,9 +1,0 @@
-<ul class="nav nav-pills">
-  {{#each group in model.subGroups}}
-    {{#link-to "leaderboards" group tagName="li"}}
-        {{#link-to "leaderboards" group}}{{group.name}}{{/link-to}}
-    {{/link-to}}
-  {{/each}}
-</ul>
-
-{{outlet}}

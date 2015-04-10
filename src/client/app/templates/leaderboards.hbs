@@ -1,9 +1,0 @@
-<ul class="nav nav-pills">
-  {{#each leaderboard in model.leaderboards}}
-    {{#link-to "leaderboard" leaderboard tagName="li"}}
-        {{#link-to "leaderboard" leaderboard}}{{leaderboard.name}}{{/link-to}}
-    {{/link-to}}
-  {{/each}}
-</ul>
-
-{{outlet}}
