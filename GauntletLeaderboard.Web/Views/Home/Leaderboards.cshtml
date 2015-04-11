@@ -1,10 +1,8 @@
 ﻿@model GauntletLeaderboard.Web.Models.Home.LeaderboardsViewModel
 
 @{
-    ViewBag.Title = "Leaderboards";
+    ViewBag.Title = string.Format("{0}::{1}", Model.Group, Model.SubGroup);
 }
-
-<h2>Leaderboards</h2>
 
 @Html.Partial("_Groups", Model.Groups)
 @Html.Partial("_SubGroups", Model.SubGroups)
