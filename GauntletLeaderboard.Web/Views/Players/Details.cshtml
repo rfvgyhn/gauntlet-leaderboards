@@ -4,6 +4,10 @@
     ViewBag.Title = Model.Player.Profile.PersonaName;
 }
 
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/player.js")"></script>
+}
+
 <a href="@Model.Player.Profile.ProfileUrl">@Model.Player.Profile.PersonaName</a>
 
 <div>

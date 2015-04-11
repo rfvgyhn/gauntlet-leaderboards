@@ -37,3 +37,26 @@
 .steambadge-11 {
     background-image: url(http://media.steampowered.com/steamcommunity/public/images/items/258970/dbb9a455de83d1baff9fd2fa4b7258ef2f09ec5b.png)
 }
+
+table.table thead .sorting:after {
+  content: '\f0dc';
+}
+
+table.table thead .sorting_asc:after {
+  content: '\f0de';
+}
+
+table.table thead .sorting_desc:after {
+  content: '\f0dd';
+}
+
+table.table thead .sorting:after, table.table thead .sorting_asc:after, table.table thead .sorting_desc:after, table.table thead .sorting_asc_disabled:after, table.table thead .sorting_desc_disabled:after {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+  margin-left: .5rem;
+}

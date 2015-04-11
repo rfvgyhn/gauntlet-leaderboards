@@ -13,6 +13,8 @@ namespace GauntletLeaderboard.Web
 #if DEBUG
                         "~/tmp/jquery.js",
                         "~/tmp/bootstrap.js",
+                        "~/tmp/datatables.js",
+                        "~/tmp/datatables-bootstrap.js",
                         "~/Scripts/main.js"
 #else
                         "~/dist/gauntlet-leaderboards.min.js"
@@ -22,6 +24,8 @@ namespace GauntletLeaderboard.Web
             bundles.Add(new StyleBundle("~/Content/app").Include(
 #if DEBUG
                         "~/tmp/css/bootstrap.css",
+                        "~/tmp/css/font-awesome.css",
+                        "~/tmp/css/datatables-bootstrap.css",
                         "~/Content/Site.css"
 #else
                         "~/dist/gauntlet-leaderboards.min.js"
