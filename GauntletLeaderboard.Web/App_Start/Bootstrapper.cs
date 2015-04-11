@@ -34,6 +34,7 @@ namespace GauntletLeaderboard.Web.App_Start
             var profileUrl = WebConfigurationManager.AppSettings["profileUrl"];
             var achievementsUrl = WebConfigurationManager.AppSettings["achievementsUrl"];
             var badgesUrl = WebConfigurationManager.AppSettings["badgesUrl"];
+            var vanityUrl = WebConfigurationManager.AppSettings["vanityUrl"];
             var appId = int.Parse(WebConfigurationManager.AppSettings["appId"]);
             var leaderboardPath = HostingEnvironment.MapPath("~/leaderboards.json");
 
@@ -53,6 +54,7 @@ namespace GauntletLeaderboard.Web.App_Start
                        new NamedParameter("profileUrl", profileUrl),
                        new NamedParameter("achievementsUrl", achievementsUrl),
                        new NamedParameter("badgesUrl", badgesUrl),
+                       new NamedParameter("vanityUrl", vanityUrl),
                        new NamedParameter("appId", appId),
                    })
                    .As<IProfileRepository>()

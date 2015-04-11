@@ -32,5 +32,10 @@ namespace GauntletLeaderboard.Core.Services
                 Profile = await this.ProfileRepository.GetById(id)
             };
         }
+
+        public async Task<long> ResolveVanityName(string name)
+        {
+            return await this.ProfileRepository.ResolveVanityName(name);
+        }
     }
 }

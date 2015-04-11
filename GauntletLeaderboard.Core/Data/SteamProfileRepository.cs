@@ -16,15 +16,17 @@ namespace GauntletLeaderboard.Core.Data
         readonly string ProfileUrl;
         readonly string AchievementsUrl;
         readonly string BadgesUrl;
+        readonly string VanityUrl;
         readonly int AppId;
         readonly ObjectCache Cache;
         readonly CacheItemPolicy CacheItemPolicy;
 
-        public SteamProfileRepository(string steamApiKey, string profileUrl, string achievementsUrl, string badgesUrl, int appId, ObjectCache cache)
+        public SteamProfileRepository(string steamApiKey, string profileUrl, string achievementsUrl, string badgesUrl, string vanityUrl, int appId, ObjectCache cache)
         {
             this.ProfileUrl = profileUrl.Replace("{key}", steamApiKey);
             this.AchievementsUrl = achievementsUrl.Replace("{key}", steamApiKey);
             this.BadgesUrl = badgesUrl.Replace("{key}", steamApiKey);
+            this.VanityUrl = vanityUrl.Replace("{key}", steamApiKey);
             this.AppId = appId;
             this.Cache = cache;
             this.CacheItemPolicy = new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.UtcNow.AddMinutes(5) };
@@ -77,6 +79,24 @@ namespace GauntletLeaderboard.Core.Data
                     return json["response"]["players"].ToObject<SteamProfile[]>();
                 }
             }, this.CacheItemPolicy);
+        }
+
+        public async Task<long> ResolveVanityName(string name)
+        {
+            var key = "vanityUrl:{0}".FormatWith(name);
+            var cacheItemPolicy = new CacheItemPolicy { SlidingExpiration = TimeSpan.FromMinutes(5) };
+
+            return await this.Cache.GetOrAdd(key, async () =>
+            {
+                using (var client = new WebClient())
+                {
+                    var url = this.VanityUrl.Replace("{name}", name);
+                    var response = await client.DownloadStringTaskAsync(url);
+                    var json = JObject.Parse(response);
+
+                    return json["response"]["steamid"].ToObject<long>();
+                }
+            }, cacheItemPolicy);
         }
     }
 }

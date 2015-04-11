@@ -22,7 +22,14 @@ namespace GauntletLeaderboard.Web
             routes.MapRoute(
                 name: "player",
                 url: "players/{id}",
-                defaults: new { controller = "Players", action = "Details" }
+                defaults: new { controller = "Players", action = "Details" },
+                constraints: new { id = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "player-by-name",
+                url: "players/{name}",
+                defaults: new { controller = "Players", action = "DetailsByName" }
             );
 
             routes.MapRoute(

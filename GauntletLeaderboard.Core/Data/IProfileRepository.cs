@@ -11,5 +11,6 @@ namespace GauntletLeaderboard.Core.Data
     {
         Task<SteamProfile> GetById(long id);
         Task<IEnumerable<SteamProfile>> GetByIds(IEnumerable<long> ids);
+        Task<long> ResolveVanityName(string name);
     }
 }

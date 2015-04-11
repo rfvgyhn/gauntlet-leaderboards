@@ -23,14 +23,27 @@ namespace GauntletLeaderboard.Web.Controllers
             return View();
         }
 
+        public async Task<ActionResult> DetailsByName(string name)
+        {
+            var steamId = await this.PlayerService.ResolveVanityName(name);
+            var model = await GetViewModel(steamId);
+
+            return View("Details", model);
+        }
+
         public async Task<ActionResult> Details(long id)
         {
-            var model = new DetailsViewModel
+            var model = await GetViewModel(id);
+
+            return View(model);
+        }
+
+        private async Task<DetailsViewModel> GetViewModel(long id)
+        {
+            return new DetailsViewModel
             {
                 Player = await this.PlayerService.GetById(id)
             };
-
-            return View(model);
         }
     }
 }
