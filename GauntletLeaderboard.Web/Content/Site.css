@@ -38,6 +38,46 @@
     background-image: url(http://media.steampowered.com/steamcommunity/public/images/items/258970/dbb9a455de83d1baff9fd2fa4b7258ef2f09ec5b.png)
 }
 
+.steam-profile h2 {
+    vertical-align: middle;
+    display: inline;
+}
+
+.steam-profile a {
+    text-decoration: none;
+}
+
+.avatar {
+    border-radius: 1rem;
+    border: 3px solid black;
+}
+
+.state-Online {
+    border-color: #53a4c4;
+}
+
+.state-Away {
+    border-color: #c4c353;
+}
+
+.state-Snooze {
+    border-color: #d5aa28;
+}
+
+.state-Gaming {
+    border-color: #8fb93b;
+}
+
+.state-Busy {
+    border-color: #b93b3b;
+}
+
+.state-Offline {
+    border-color: #616161;
+}
+
+/* Datatables overrides */
+
 table.table thead .sorting:after {
   content: '\f0dc';
 }
