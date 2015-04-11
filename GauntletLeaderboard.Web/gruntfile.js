@@ -8,10 +8,16 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         jquery: 'bower_components/jquery/dist/jquery.js',
+        mainJs: 'scripts/main.js',
+        mainCss: 'cotnent/site.css',
+        bootstrapJs: 'bower_components/bootstrap/dist/js/bootstrap.js',
+        bootstrapCss: 'bower_components/bootstrap/dist/css/bootstrap.css',
         copy: {
             main: {
                 files: [
-                    { src: ['<%= jquery %>'], dest: "scripts/jquery.js" }
+                    { src: ['<%= jquery %>'], dest: "scripts/jquery.js" },
+                    { src: ['<%= bootstrapJs %>'], dest: "scripts/bootstrap.js" },
+                    { src: ['<%= bootstrapCss %>'], dest: "content/css/bootstrap.css" },
                 ]
             }
         },
@@ -22,6 +28,8 @@ module.exports = function (grunt) {
             dist: {
                 src: [
                     '<%= jquery %>',
+                    '<%= bootstrapJs %>',
+                    '<%= main %>',
                 ],
                 dest: 'tmp/<%= pkg.name %>.js'
             }

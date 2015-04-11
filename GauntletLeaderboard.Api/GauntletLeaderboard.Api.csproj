@@ -86,8 +86,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="leaderboards.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="..\GauntletLeaderboard.Core\Data\leaderboards.json">
+      <Link>leaderboards.json</Link>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -127,11 +127,11 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+  <Target Name="CopyLinkedContentFiles" BeforeTargets="Build">
+    <Copy SourceFiles="%(Content.Identity)"
+          DestinationFiles="%(Content.Link)"
+          SkipUnchangedFiles='true'
+          OverwriteReadOnlyFiles='true'
+          Condition="'%(Content.Link)' != ''" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

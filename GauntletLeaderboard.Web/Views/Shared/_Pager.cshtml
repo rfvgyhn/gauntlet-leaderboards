@@ -1,0 +1,14 @@
+﻿@model GauntletLeaderboard.Web.Models.IPagedViewModel
+@{ var action = ViewContext.RouteData.Values["action"] as string; }
+
+@Html.ActionLink("First", action, new { page = Model.First })
+
+@if (Model.Previous.HasValue) {
+    @Html.ActionLink("Previous", action, new { page = Model.Previous })
+}
+
+@if (Model.Next.HasValue) {
+    @Html.ActionLink("Next", action, new { page = Model.Next })
+}
+
+@Html.ActionLink("Last", action, new { page = Model.TotalPages })

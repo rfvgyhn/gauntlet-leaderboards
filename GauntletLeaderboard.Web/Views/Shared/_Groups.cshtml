@@ -1,0 +1,10 @@
+﻿@model IEnumerable<GauntletLeaderboard.Core.Model.Group>
+
+<ul class="nav nav-pills">
+@foreach (var group in Model)
+{
+    <li>
+        @Html.ActionLink(group.Name, "SubGroups", new { group = group.Id })
+    </li>
+}
+</ul>

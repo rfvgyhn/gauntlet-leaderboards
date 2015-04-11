@@ -11,15 +11,22 @@ namespace GauntletLeaderboard.Web
             BundleTable.EnableOptimizations = false;
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
 #if DEBUG
-                        "~/Scripts/jquery.js"
+                        "~/Scripts/jquery.js",
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/main.js"
 #else
                         "~/Scripts/gauntlet-leaderboards.min.js"
 #endif
             ));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/app").Include(
+#if DEBUG
+                        "~/Content/css/bootstrap.css",
+                        "~/Content/Site.css"
+#else
+                        "~/Scripts/gauntlet-leaderboards.min.js"
+#endif
+                      ));
         }
     }
 }

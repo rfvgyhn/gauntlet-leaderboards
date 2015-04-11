@@ -65,6 +65,9 @@
     <Compile Include="Services\LeaderboardService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\leaderboards.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

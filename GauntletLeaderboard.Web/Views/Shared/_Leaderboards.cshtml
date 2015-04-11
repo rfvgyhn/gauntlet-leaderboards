@@ -1,0 +1,10 @@
+﻿@model IEnumerable<GauntletLeaderboard.Core.Model.Leaderboard>
+
+<ul class="nav nav-pills">
+@foreach (var leaderboard in Model)
+{
+    <li>
+        @Html.ActionLink(leaderboard.Name, "Leaderboard", new { group = leaderboard.Group, subgroup = leaderboard.SubGroup, leaderboardId = leaderboard.Id })
+    </li>
+}
+</ul>
