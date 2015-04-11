@@ -4,7 +4,7 @@
 key.config
 
 tmp/
-Scripts/
+dist/
 
 # User-specific files
 *.suo

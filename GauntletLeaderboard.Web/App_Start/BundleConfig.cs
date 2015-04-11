@@ -11,20 +11,20 @@ namespace GauntletLeaderboard.Web
             BundleTable.EnableOptimizations = false;
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
 #if DEBUG
-                        "~/Scripts/jquery.js",
-                        "~/Scripts/bootstrap.js",
+                        "~/tmp/jquery.js",
+                        "~/tmp/bootstrap.js",
                         "~/Scripts/main.js"
 #else
-                        "~/Scripts/gauntlet-leaderboards.min.js"
+                        "~/dist/gauntlet-leaderboards.min.js"
 #endif
             ));
 
             bundles.Add(new StyleBundle("~/Content/app").Include(
 #if DEBUG
-                        "~/Content/css/bootstrap.css",
+                        "~/tmp/css/bootstrap.css",
                         "~/Content/Site.css"
 #else
-                        "~/Scripts/gauntlet-leaderboards.min.js"
+                        "~/dist/gauntlet-leaderboards.min.js"
 #endif
                       ));
         }

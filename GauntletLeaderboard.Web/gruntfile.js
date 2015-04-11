@@ -9,15 +9,15 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         jquery: 'bower_components/jquery/dist/jquery.js',
         mainJs: 'scripts/main.js',
-        mainCss: 'cotnent/site.css',
+        mainCss: 'content/site.css',
         bootstrapJs: 'bower_components/bootstrap/dist/js/bootstrap.js',
         bootstrapCss: 'bower_components/bootstrap/dist/css/bootstrap.css',
         copy: {
             main: {
                 files: [
-                    { src: ['<%= jquery %>'], dest: "scripts/jquery.js" },
-                    { src: ['<%= bootstrapJs %>'], dest: "scripts/bootstrap.js" },
-                    { src: ['<%= bootstrapCss %>'], dest: "content/css/bootstrap.css" },
+                    { src: ['<%= jquery %>'], dest: "tmp/jquery.js" },
+                    { src: ['<%= bootstrapJs %>'], dest: "tmp/bootstrap.js" },
+                    { src: ['<%= bootstrapCss %>'], dest: "tmp/css/bootstrap.css" },
                 ]
             }
         },
@@ -29,7 +29,7 @@ module.exports = function (grunt) {
                 src: [
                     '<%= jquery %>',
                     '<%= bootstrapJs %>',
-                    '<%= main %>',
+                    '<%= mainJs %>',
                 ],
                 dest: 'tmp/<%= pkg.name %>.js'
             }
@@ -40,7 +40,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'scripts/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+                    'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
                 }
             }
         }, 
