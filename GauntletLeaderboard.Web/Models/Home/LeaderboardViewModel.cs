@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GauntletLeaderboard.Web.Models
+namespace GauntletLeaderboard.Web.Models.Home
 {
     public class LeaderboardViewModel : LeaderboardsViewModel, IPagedViewModel
     {

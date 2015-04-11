@@ -3,34 +3,37 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Gauntlet Leaderboards</title>
     @Styles.Render("~/Content/app")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Application name", "Groups", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Leaderboards", "Groups", "Home")</li>
+                    <li>@Html.ActionLink("Players", "Index", "Players")</li>
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+    </nav>
+    <div class="container" role="main">
         @RenderBody()
-        <hr />
+
         <footer>
             <p>Powered by Steam</p>
         </footer>
     </div>
+    
 
     @Scripts.Render("~/bundles/app")
     @RenderSection("scripts", required: false)

@@ -1,0 +1,47 @@
+﻿@model GauntletLeaderboard.Web.Models.Players.DetailsViewModel
+
+@{
+    ViewBag.Title = Model.Player.Profile.PersonaName;
+}
+
+<a href="@Model.Player.Profile.ProfileUrl">@Model.Player.Profile.PersonaName</a>
+
+<div>
+@if (Model.Player.Profile.AchievementPercentage != null) {
+    <span>Achievements: </span><a href="@Model.Player.Profile.ProfileUrl stats/258970/achievements/">@Model.Player.Profile.AchievementPercentage.Value.ToString("0%")</a>
+    <span>Badges:</span>
+        <ul>
+        @foreach (var badge in Model.Player.Profile.Badges) {
+            <li class="steambadge steambadge-@badge.BorderColor@badge.Level" title="Level @badge.Level"><span></span></li>
+        }
+        </ul>
+}
+</div>
+
+@if (Model.Player.Entries.Any()) {
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Group</th>
+            <th>Sub Group</th>
+            <th>Map</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entry in Model.Player.Entries)
+        {
+            <tr>
+                <td>@entry.Rank</td>
+                <td>@entry.Leaderboard.Group</td>
+                <td>@entry.Leaderboard.SubGroup</td>
+                <td>@entry.Leaderboard.Name</td>
+                <td>@entry.Score</td>
+            </tr>
+        }
+    </tbody>
+</table>
+} else {
+<p>No Leaderboard Entries</p>   
+}

@@ -1,4 +1,4 @@
-﻿@model GauntletLeaderboard.Web.Models.LeaderboardViewModel
+﻿@model GauntletLeaderboard.Web.Models.Home.LeaderboardViewModel
 
 @{
     ViewBag.Title = "Leaderboard";
@@ -23,7 +23,7 @@
     @foreach (var entry in Model.Entries) {
         <tr>
             <td>@entry.Rank</td>
-            <td>@entry.Player.PersonaName</td>
+            <td>@Html.ActionLink(entry.Player.PersonaName, "Details", "Players", new { id = entry.SteamId }, null)</td>
             <td>@entry.Score</td>
         </tr>
     }

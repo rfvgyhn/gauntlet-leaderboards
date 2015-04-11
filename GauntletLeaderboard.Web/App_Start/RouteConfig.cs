@@ -14,6 +14,18 @@ namespace GauntletLeaderboard.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "players",
+                url: "players",
+                defaults: new { controller = "Players", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "player",
+                url: "players/{id}",
+                defaults: new { controller = "Players", action = "Details" }
+            );
+
+            routes.MapRoute(
                 name: "home",
                 url: "",
                 defaults: new { controller = "Home", action = "Groups" }
@@ -37,11 +49,7 @@ namespace GauntletLeaderboard.Web
                 defaults: new { controller = "Home", action = "Leaderboard" }
             );
 
-            routes.MapRoute(
-                name: "default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+            
         }
     }
 }

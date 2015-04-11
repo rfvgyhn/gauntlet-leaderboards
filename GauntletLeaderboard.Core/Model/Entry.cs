@@ -6,11 +6,14 @@ namespace GauntletLeaderboard.Core.Model
     public class Entry
     {
         [XmlElement("steamid")]  
-        public string SteamId { get; set; }
+        public long SteamId { get; set; }
+        [XmlIgnore]
         public SteamProfile Player { get; set; }
         [XmlElement("score")]
         public int Score { get; set; }
         [XmlElement("rank")]
         public int Rank { get; set; }
+        [XmlIgnore]
+        public Leaderboard Leaderboard { get; set; }
     }
 }

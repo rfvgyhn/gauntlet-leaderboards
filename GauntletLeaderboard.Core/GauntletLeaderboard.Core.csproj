@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Data\FileInterestedLeaderboardRepository.cs" />
     <Compile Include="Data\IInterestedLeaderboardRepository.cs" />
+    <Compile Include="Data\IProfileRepository.cs" />
+    <Compile Include="Data\SteamProfileRepository.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\ObjectCacheExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
@@ -55,6 +57,8 @@
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\InterestedLeaderboard.cs" />
     <Compile Include="Model\Leaderboard.cs" />
+    <Compile Include="Model\Player.cs" />
+    <Compile Include="Model\SteamBadge.cs" />
     <Compile Include="Model\SteamProfile.cs" />
     <Compile Include="Model\SubGroup.cs" />
     <Compile Include="PagedResult.cs" />
@@ -62,7 +66,9 @@
     <Compile Include="Services\GroupService.cs" />
     <Compile Include="Services\IGroupService.cs" />
     <Compile Include="Services\ILeaderboardService.cs" />
+    <Compile Include="Services\IPlayerService.cs" />
     <Compile Include="Services\LeaderboardService.cs" />
+    <Compile Include="Services\PlayerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\leaderboards.json">

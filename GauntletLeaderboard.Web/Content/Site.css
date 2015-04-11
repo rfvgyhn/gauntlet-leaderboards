@@ -6,3 +6,34 @@
     width: 8rem;
     text-align: right;
 }
+
+.steambadge {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-size: 40px;
+}
+
+.steambadge-01 {
+    background-image: url(http://media.steampowered.com/steamcommunity/public/images/items/258970/602abedfaafad7d9027d8e22c3fb307623bdae0c.png)
+}
+
+.steambadge-02 {
+    background-image: url(http://media.steampowered.com/steamcommunity/public/images/items/258970/24ab19f4fcc8fc06fd5a83c9f404a78a485ab048.png)
+}
+
+.steambadge-03 {
+    background-image: url(http://media.steampowered.com/steamcommunity/public/images/items/258970/dadadb202d86e6d14d30c23d3a628a0ec47496af.png)
+}
+
+.steambadge-04 {
+    background-image: url(http://media.steampowered.com/steamcommunity/public/images/items/258970/0f6ce056e258246fc62e37c15eea24bfe729d434.png)
+}
+
+.steambadge-05 {
+    background-image: url(http://media.steampowered.com/steamcommunity/public/images/items/258970/884019fbe46ecac5ac272bd0d93a98fa7fd4f23d.png)
+}
+
+.steambadge-11 {
+    background-image: url(http://media.steampowered.com/steamcommunity/public/images/items/258970/dbb9a455de83d1baff9fd2fa4b7258ef2f09ec5b.png)
+}

@@ -125,11 +125,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\GroupsViewModel.cs" />
+    <Compile Include="Models\Home\GroupsViewModel.cs" />
     <Compile Include="Models\IPagedViewModel.cs" />
-    <Compile Include="Models\LeaderboardsViewModel.cs" />
-    <Compile Include="Models\LeaderboardViewModel.cs" />
-    <Compile Include="Models\SubGroupsViewModel.cs" />
+    <Compile Include="Models\Home\LeaderboardsViewModel.cs" />
+    <Compile Include="Models\Home\LeaderboardViewModel.cs" />
+    <Compile Include="Models\Home\SubGroupsViewModel.cs" />
+    <Compile Include="Models\Players\DetailsViewModel.cs" />
+    <Compile Include="Models\Players\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -163,10 +165,10 @@
     <Content Include="Views\Home\Leaderboards.cshtml" />
     <Content Include="Views\Home\Leaderboard.cshtml" />
     <Content Include="Views\Shared\_Pager.cshtml" />
+    <Content Include="Views\Players\Index.cshtml" />
+    <Content Include="Views\Players\Details.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Players\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

@@ -1,8 +1,10 @@
 ﻿using GauntletLeaderboard.Core.Services;
 using GauntletLeaderboard.Web.Models;
+using GauntletLeaderboard.Web.Models.Home;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -66,7 +68,7 @@ namespace GauntletLeaderboard.Web.Controllers
             return View(model);
         }
 
-        public ActionResult Leaderboard(string group, string subgroup, int leaderboardId, int? page = 1, int? pageSize = 20)
+        public async Task<ActionResult> Leaderboard(string group, string subgroup, int leaderboardId, int? page = 1, int? pageSize = 20)
         {
             var leaderboards = this.leaderboardService.GetLeaderboardsBySubGroup(group, subgroup);
             string groupName = null;
@@ -81,7 +83,7 @@ namespace GauntletLeaderboard.Web.Controllers
 
             var model = new LeaderboardViewModel
             {
-                Entries = this.leaderboardService.GetLeaderboardEntries(leaderboardId, page.Value, pageSize.Value),
+                Entries = await this.leaderboardService.GetLeaderboardEntries(leaderboardId, page.Value, pageSize.Value),
                 Groups = this.groupService.All(),
                 Leaderboard = this.leaderboardService.GetLeaderboard(leaderboardId),
                 Leaderboards = leaderboards,

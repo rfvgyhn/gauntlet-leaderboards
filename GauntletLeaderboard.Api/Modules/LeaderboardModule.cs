@@ -47,11 +47,11 @@ namespace GauntletLeaderboard.Api.Modules
                 return this.PrepareResult(result, entriesLinkGenerator);
             };
 
-            Get["/{id:int}/entries"] = parameters =>
+            Get["/{id:int}/entries", true] = async (parameters, ct) =>
             {
                 int id = parameters.id;
                 var query = this.Bind<Query>();
-                var result = leaderboardService.GetLeaderboardEntries(id, query.Page.HasValue ? query.Page.Value : 1, query.PageSize.HasValue ? query.PageSize.Value : 20);
+                var result = await leaderboardService.GetLeaderboardEntries(id, query.Page.HasValue ? query.Page.Value : 1, query.PageSize.HasValue ? query.PageSize.Value : 20);
                 
                 return this.PrepareResult(result, query);
             };
