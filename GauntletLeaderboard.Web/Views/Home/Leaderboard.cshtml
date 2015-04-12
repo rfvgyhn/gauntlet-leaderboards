@@ -9,29 +9,30 @@
 @Html.Partial("_Leaderboards", Model.Leaderboards)
 
 <div class="text-center">Special: @Model.Leaderboard.Special</div>
-<table id="leaderboard" class="table table-striped">
-    <thead>
-        <tr>
-            <th>Rank</th>
-            <th>Player</th>
-            <th>Score</th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach (var entry in Model.Entries) {
-        <tr>
-            <td>@entry.Rank</td>
-            <td>
-            @if (entry.Player.VanityName == null) {
-                @Html.ActionLink(entry.Player.PersonaName, "Details", "Players", new { id = entry.SteamId }, null)
-            } else {
-                @Html.ActionLink(entry.Player.PersonaName, "DetailsByName", "Players", new { name = entry.Player.VanityName }, null)
-            }
-            </td>
-            <td>@entry.Score</td>
-        </tr>
-    }
-    </tbody>
-</table>
-
+<div id="leaderboard" class="@Model.Status">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var entry in Model.Entries) {
+            <tr>
+                <td>@entry.Rank</td>
+                <td>
+                @if (entry.Player.VanityName == null) {
+                    @Html.ActionLink(entry.Player.PersonaName, "Details", "Players", new { id = entry.SteamId }, null)
+                } else {
+                    @Html.ActionLink(entry.Player.PersonaName, "DetailsByName", "Players", new { name = entry.Player.VanityName }, null)
+                }
+                </td>
+                <td>@entry.Score</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
 @Html.Partial("_Pager", Model)

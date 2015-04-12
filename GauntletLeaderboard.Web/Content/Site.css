@@ -7,6 +7,26 @@
     text-align: right;
 }
 
+#leaderboard.inactive table {
+    opacity: 0.5;
+}
+#leaderboard {
+    position: relative;
+}
+
+#leaderboard.inactive::after {
+    content: "Leaderboard is Inactive";
+    font-size: 3rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    background-color: #ddd;
+    box-shadow: 4px 4px 15px;
+    padding: 0 1rem;
+}
+
 .steambadge {
     display: inline-block;
     width: 40px;

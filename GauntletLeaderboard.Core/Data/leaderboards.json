@@ -50,9 +50,65 @@
     {
         "id": 605842,
         "name": "Overall",
-        "group":  "Colosseum",
+        "group": "Colosseum",
         "subGroup": "Season 3",
         "special": "Twister",
         "isActive": true
+    },
+    {
+        "id": 605929,
+        "name": "Caves 4",
+        "group": "Colosseum",
+        "subGroup": "Season 4",
+        "special": "Poison",
+        "isActive": false
+    },
+    {
+        "id": 605932,
+        "name": "Caves 6",
+        "group": "Colosseum",
+        "subGroup": "Season 4",
+        "special": "Poison",
+        "isActive": false
+    },
+    {
+        "id": 605913,
+        "name": "Crypt 4",
+        "group": "Colosseum",
+        "subGroup": "Season 4",
+        "special": "Poison",
+        "isActive": false
+    },
+    {
+        "id": 605921,
+        "name": "Crypt 6",
+        "group": "Colosseum",
+        "subGroup": "Season 4",
+        "special": "Poison",
+        "isActive": false
+    },
+    {
+        "id": 607191,
+        "name": "Lava 4",
+        "group": "Colosseum",
+        "subGroup": "Season 4",
+        "special": "Poison",
+        "isActive": false
+    },
+    {
+        "id": 607204,
+        "name": "Lava 6",
+        "group": "Colosseum",
+        "subGroup": "Season 4",
+        "special": "Poison",
+        "isActive": false
+    },
+    {
+        "id": 605914,
+        "name": "Overall",
+        "group": "Colosseum",
+        "subGroup": "Season 4",
+        "special": "Poison",
+        "isActive": false
     }
 ]

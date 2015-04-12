@@ -12,6 +12,11 @@ namespace GauntletLeaderboard.Web.Models.Home
         public Leaderboard Leaderboard { get; set; }
         public IPagedResult<Entry> Entries { get; set; }
 
+        public string Status
+        {
+            get { return Leaderboard.IsActive ? "active" : "inactive"; }
+        }
+
         public int PageIndex
         {
             get { return Entries.PageIndex; }
