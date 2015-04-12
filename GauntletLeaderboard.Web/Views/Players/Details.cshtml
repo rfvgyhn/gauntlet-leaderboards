@@ -8,8 +8,8 @@
     <script type="text/javascript" src="@Url.Content("~/Scripts/player.js")"></script>
 }
 
-<div class="row">
-    <div class="col-md-3 steam-profile">
+<div class="row steam-profile">
+    <div class="col-md-3">
         <a href="@Model.Player.Profile.ProfileUrl">
             <img src="@Model.Player.Profile.AvatarMedium" class="avatar state-@Model.Player.Profile.PersonaState" title="@Model.Player.Profile.PersonaState" />
             <h2>@Model.Player.Profile.PersonaName</h2>
@@ -21,16 +21,20 @@
     <div class="col-md-6">
     @if (Model.Player.Profile.AchievementPercentage != null) {
         <div>
-            Achievements: <a href="@Model.Player.Profile.ProfileUrl stats/258970/achievements/">@Model.Player.Profile.AchievementPercentage.Value.ToString("0%")</a>
+            Achievements: <a href="@Html.Raw(Model.Player.Profile.ProfileUrl)stats/258970/achievements/">@Model.Player.Profile.AchievementPercentage.Value.ToString("0%")</a>
         </div>
         
-        <div>
-            Badges:
+        <div id="badges">
+            <span>Badges:</span>
+        @if (Model.Player.Profile.Badges.Any()) {
             <ul>
             @foreach (var badge in Model.Player.Profile.Badges) {
                 <li class="steambadge steambadge-@badge.BorderColor@badge.Level" title="Level @badge.Level"><span></span></li>
             }
             </ul>
+        } else {
+            <text>None</text>
+        }
         </div>
     }
     </div>

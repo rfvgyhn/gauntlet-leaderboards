@@ -38,13 +38,27 @@
     background-image: url(http://media.steampowered.com/steamcommunity/public/images/items/258970/dbb9a455de83d1baff9fd2fa4b7258ef2f09ec5b.png)
 }
 
+.steam-profile {
+    display: flex;
+    align-items: center;
+}
+
 .steam-profile h2 {
-    vertical-align: middle;
     display: inline;
 }
 
 .steam-profile a {
     text-decoration: none;
+}
+
+#badges > span {
+    vertical-align: top;
+}
+
+#badges > ul {
+    padding: 0;
+    margin: 0;
+    display: inline;
 }
 
 .avatar {
