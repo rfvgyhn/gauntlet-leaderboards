@@ -21,7 +21,13 @@
     @foreach (var entry in Model.Entries) {
         <tr>
             <td>@entry.Rank</td>
-            <td>@Html.ActionLink(entry.Player.PersonaName, "Details", "Players", new { id = entry.SteamId }, null)</td>
+            <td>
+            @if (entry.Player.VanityName == null) {
+                @Html.ActionLink(entry.Player.PersonaName, "Details", "Players", new { id = entry.SteamId }, null)
+            } else {
+                @Html.ActionLink(entry.Player.PersonaName, "DetailsByName", "Players", new { name = entry.Player.VanityName }, null)
+            }
+            </td>
             <td>@entry.Score</td>
         </tr>
     }
