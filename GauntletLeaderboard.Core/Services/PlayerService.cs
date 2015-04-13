@@ -26,14 +26,19 @@ namespace GauntletLeaderboard.Core.Services
 
         public async Task<Player> GetById(long id)
         {
+            var profile = await this.ProfileRepository.GetById(id);
+
+            if (profile == null)
+                return null;
+
             return new Player
             {
                 Entries = await this.LeaderboardService.GetLeaderboardEntriesForPlayer(id),
-                Profile = await this.ProfileRepository.GetById(id)
+                Profile = profile
             };
         }
 
-        public async Task<long> ResolveVanityName(string name)
+        public async Task<long?> ResolveVanityName(string name)
         {
             return await this.ProfileRepository.ResolveVanityName(name);
         }

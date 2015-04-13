@@ -11,6 +11,6 @@ namespace GauntletLeaderboard.Core.Services
     {
         IPagedResult<Player> All(int page, int pageSize);
         Task<Player> GetById(long id);
-        Task<long> ResolveVanityName(string name);
+        Task<long?> ResolveVanityName(string name);
     }
 }

@@ -36,7 +36,10 @@ namespace GauntletLeaderboard.Core.Data
         {
             var achievementsUrl = this.AchievementsUrl.Replace("{steamid}", id.ToString());
             var badgesUrl = this.BadgesUrl.Replace("{steamid}", id.ToString());
-            var profile = (await GetByIds(new[] { id })).Single();
+            var profile = (await GetByIds(new[] { id })).SingleOrDefault();
+
+            if (profile == null)
+                return null;
 
             using (var client = new WebClient())
             {
@@ -81,7 +84,7 @@ namespace GauntletLeaderboard.Core.Data
             }, this.CacheItemPolicy);
         }
 
-        public async Task<long> ResolveVanityName(string name)
+        public async Task<long?> ResolveVanityName(string name)
         {
             var key = "vanityUrl:{0}".FormatWith(name);
             var cacheItemPolicy = new CacheItemPolicy { SlidingExpiration = TimeSpan.FromMinutes(5) };
@@ -93,8 +96,12 @@ namespace GauntletLeaderboard.Core.Data
                     var url = this.VanityUrl.Replace("{name}", name);
                     var response = await client.DownloadStringTaskAsync(url);
                     var json = JObject.Parse(response);
+                    var steamId = json["response"]["steamid"];
 
-                    return json["response"]["steamid"].ToObject<long>();
+                    if (steamId == null)
+                        return null;
+
+                    return steamId.ToObject<long?>();
                 }
             }, cacheItemPolicy);
         }

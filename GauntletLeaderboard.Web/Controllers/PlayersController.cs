@@ -26,7 +26,11 @@ namespace GauntletLeaderboard.Web.Controllers
         public async Task<ActionResult> DetailsByName(string name)
         {
             var steamId = await this.PlayerService.ResolveVanityName(name);
-            var model = await GetViewModel(steamId);
+
+            if (steamId == null)
+                return new HttpNotFoundResult("Player not found");
+
+            var model = await GetViewModel(steamId.Value);
 
             return View("Details", model);
         }
@@ -35,14 +39,22 @@ namespace GauntletLeaderboard.Web.Controllers
         {
             var model = await GetViewModel(id);
 
+            if (model == null)
+                return new HttpNotFoundResult("Player not found");
+
             return View(model);
         }
 
         private async Task<DetailsViewModel> GetViewModel(long id)
         {
+            var player = await this.PlayerService.GetById(id);
+
+            if (player == null)
+                return null;
+
             return new DetailsViewModel
             {
-                Player = await this.PlayerService.GetById(id)
+                Player = player
             };
         }
     }
