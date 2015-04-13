@@ -27,6 +27,12 @@ namespace GauntletLeaderboard.Web
             );
 
             routes.MapRoute(
+                name: "search",
+                url: "players/search/{id}",
+                defaults: new { controller = "Players", action = "Search", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "player-by-name",
                 url: "players/{name}",
                 defaults: new { controller = "Players", action = "DetailsByName" }
@@ -55,8 +61,6 @@ namespace GauntletLeaderboard.Web
                 url: "{group}/{subgroup}/{leaderboardId}",
                 defaults: new { controller = "Home", action = "Leaderboard" }
             );
-
-            
         }
     }
 }

@@ -8,6 +8,20 @@
 
             if (match)
                 $this.add($this.parent("li")).addClass("active");
-        })
+        });
+
+        $("#search").on("input", function (e) {
+            var $this = $(this);
+            var q = $this.val();
+            var $link = $this.next().find("a");
+
+            $link.attr("href", $link.data("path") + "/" + q);
+        }).on("keypress", function (e) {
+            var $this = $(this);
+            var pressedEnter = (e.keyCode || e.which) == 13;
+
+            if (pressedEnter)
+                $this.next().find("a")[0].click();
+        });
     });
 })(jQuery);

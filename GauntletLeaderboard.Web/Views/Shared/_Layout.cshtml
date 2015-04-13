@@ -21,8 +21,15 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Leaderboards", "Groups", "Home")</li>
-                    <li>@Html.ActionLink("Players", "Index", "Players")</li>
                 </ul>
+                <div class="navbar-form navbar-right" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="search" placeholder="Steam ID64 / Custom URL">
+                        <span class="input-group-btn">
+                            <a href="#" class="btn btn-default" data-path="@Url.RouteUrl("search")"><span class="fa fa-search" aria-hidden="true"></span></a>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>

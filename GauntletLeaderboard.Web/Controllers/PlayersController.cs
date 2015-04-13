@@ -18,9 +18,13 @@ namespace GauntletLeaderboard.Web.Controllers
             this.PlayerService = playerService;
         }
 
-        public ActionResult Index()
+        public ActionResult Search(string id)
         {
-            return View();
+            long steamId;
+            if (long.TryParse(id, out steamId))
+                return RedirectToAction("Details", new { id = steamId });
+
+            return RedirectToAction("DetailsByName", new { name = id });
         }
 
         public async Task<ActionResult> DetailsByName(string name)

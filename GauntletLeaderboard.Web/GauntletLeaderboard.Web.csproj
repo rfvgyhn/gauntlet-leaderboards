@@ -166,7 +166,6 @@
     <Content Include="Views\Home\Leaderboards.cshtml" />
     <Content Include="Views\Home\Leaderboard.cshtml" />
     <Content Include="Views\Shared\_Pager.cshtml" />
-    <Content Include="Views\Players\Index.cshtml" />
     <Content Include="Views\Players\Details.cshtml" />
   </ItemGroup>
   <ItemGroup />
