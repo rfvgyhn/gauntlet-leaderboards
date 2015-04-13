@@ -3,6 +3,7 @@
         $("table").DataTable({
             paging: false,
             info: false,
+            search: {smart: false},
             language: {
                 search: "",
                 searchPlaceholder: "Filter"
