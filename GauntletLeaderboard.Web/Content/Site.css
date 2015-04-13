@@ -7,6 +7,10 @@
     border: 1px solid #7e6c55;
 }
 
+.navbar a {
+    text-decoration: none;
+}
+
 #leaderboard td:first-child {
     width: 3rem;
 }
@@ -76,7 +80,7 @@
     display: inline;
 }
 
-.steam-profile a {
+.steam-profile > div> a {
     text-decoration: none;
 }
 

@@ -2180,7 +2180,7 @@ select[multiple].form-group-lg .form-control {
 .btn:hover,
 .btn:focus,
 .btn.focus {
-  color: #333333;
+  color: #c9c9c9;
   text-decoration: none;
 }
 .btn:active,
@@ -2201,9 +2201,9 @@ fieldset[disabled] .btn {
   box-shadow: none;
 }
 .btn-default {
-  color: #333333;
-  background-color: #ffffff;
-  border-color: #cccccc;
+  color: #c9c9c9;
+  background-color: #363131;
+  border-color: #7e6c55;
 }
 .btn-default:hover,
 .btn-default:focus,
@@ -2211,9 +2211,9 @@ fieldset[disabled] .btn {
 .btn-default:active,
 .btn-default.active,
 .open > .dropdown-toggle.btn-default {
-  color: #333333;
-  background-color: #e6e6e6;
-  border-color: #adadad;
+  color: #c9c9c9;
+  background-color: #1b1919;
+  border-color: #594d3c;
 }
 .btn-default:active,
 .btn-default.active,
@@ -2238,12 +2238,12 @@ fieldset[disabled] .btn-default:active,
 .btn-default.disabled.active,
 .btn-default[disabled].active,
 fieldset[disabled] .btn-default.active {
-  background-color: #ffffff;
-  border-color: #cccccc;
+  background-color: #363131;
+  border-color: #7e6c55;
 }
 .btn-default .badge {
-  color: #ffffff;
-  background-color: #333333;
+  color: #363131;
+  background-color: #c9c9c9;
 }
 .btn-primary {
   color: #ffffff;
