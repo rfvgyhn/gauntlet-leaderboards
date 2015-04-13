@@ -1,4 +1,13 @@
-﻿#leaderboard td:first-child {
+﻿a {
+    text-decoration: underline;
+}
+
+.nav-pills a {
+    text-decoration: none;
+    border: 1px solid #7e6c55;
+}
+
+#leaderboard td:first-child {
     width: 3rem;
 }
 

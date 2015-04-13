@@ -144,6 +144,7 @@
     <Content Include="..\GauntletLeaderboard.Core\Data\leaderboards.json">
       <Link>leaderboards.json</Link>
     </Content>
+    <Content Include="Content\gauntlet-leaderboards.bootstrap.theme.css" />
     <None Include="Properties\PublishProfiles\gauntlet-leaderboards.pubxml" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\player.js" />

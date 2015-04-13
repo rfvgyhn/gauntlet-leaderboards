@@ -26,6 +26,7 @@ namespace GauntletLeaderboard.Web
                         "~/tmp/css/bootstrap.css",
                         "~/tmp/css/font-awesome.css",
                         "~/tmp/css/datatables-bootstrap.css",
+                        "~/Content/gauntlet-leaderboards.bootstrap.theme.css",
                         "~/Content/Site.css"
 #else
                         "~/dist/gauntlet-leaderboards.min.js"
