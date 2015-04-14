@@ -127,10 +127,194 @@
     },
     {
         "id": 601565,
-        "name": "Caves Chapter 1",
+        "name": "Caverns of Mag'Ash I",
         "group": "Campaign",
-        "subGroup": "Speed Run",
+        "subGroup": "Time",
         "isActive": true,
-        "scoreType":  "time"
+        "scoreType": "time"
+    },
+    {
+        "id": 602383,
+        "name": "Caverns of Mag'Ash II",
+        "group": "Campaign",
+        "subGroup": "Time",
+        "isActive": true,
+        "scoreType": "time"
+    },
+    {
+        "id": 602718,
+        "name": "Caverns of Mag'Ash III",
+        "group": "Campaign",
+        "subGroup": "Time",
+        "isActive": true,
+        "scoreType": "time"
+    },
+    {
+        "id": 602740,
+        "name": "Caverns of Mag'Ash IV",
+        "group": "Campaign",
+        "subGroup": "Time",
+        "isActive": true,
+        "scoreType": "time"
+    },
+    {
+        "id": 602689,
+        "name": "Crypts of the Sun King I",
+        "group": "Campaign",
+        "subGroup": "Time",
+        "isActive": true,
+        "scoreType": "time"
+    },
+    {
+        "id": 602698,
+        "name": "Crypts of the Sun King II",
+        "group": "Campaign",
+        "subGroup": "Time",
+        "isActive": true,
+        "scoreType": "time"
+    },
+    {
+        "id": 601577,
+        "name": "Crypts of the Sun King III",
+        "group": "Campaign",
+        "subGroup": "Time",
+        "isActive": true,
+        "scoreType": "time"
+    },
+    {
+        "id": 601562,
+        "name": "Crypts of the Sun King IV",
+        "group": "Campaign",
+        "subGroup": "Time",
+        "isActive": true,
+        "scoreType": "time"
+    },
+    {
+        "id": 602776,
+        "name": "Burning Temple of Dur I",
+        "group": "Campaign",
+        "subGroup": "Time",
+        "isActive": true,
+        "scoreType": "time"
+    },
+    {
+        "id": 602859,
+        "name": "Burning Temple of Dur II",
+        "group": "Campaign",
+        "subGroup": "Time",
+        "isActive": true,
+        "scoreType": "time"
+    },
+    {
+        "id": 602871,
+        "name": "Burning Temple of Dur III",
+        "group": "Campaign",
+        "subGroup": "Time",
+        "isActive": true,
+        "scoreType": "time"
+    },
+    {
+        "id": 602877,
+        "name": "Burning Temple of Dur IV",
+        "group": "Campaign",
+        "subGroup": "Time",
+        "isActive": true,
+        "scoreType": "time"
+    },
+    {
+        "id": 601564,
+        "name": "Caverns of Mag'Ash I",
+        "group": "Campaign",
+        "subGroup": "Gold",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 602382,
+        "name": "Caverns of Mag'Ash II",
+        "group": "Campaign",
+        "subGroup": "Gold",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 602717,
+        "name": "Caverns of Mag'Ash III",
+        "group": "Campaign",
+        "subGroup": "Gold",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 602739,
+        "name": "Caverns of Mag'Ash IV",
+        "group": "Campaign",
+        "subGroup": "Gold",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 602688,
+        "name": "Crypts of the Sun King I",
+        "group": "Campaign",
+        "subGroup": "Gold",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 602699,
+        "name": "Crypts of the Sun King II",
+        "group": "Campaign",
+        "subGroup": "Gold",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 601576,
+        "name": "Crypts of the Sun King III",
+        "group": "Campaign",
+        "subGroup": "Gold",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 601563,
+        "name": "Crypts of the Sun King IV",
+        "group": "Campaign",
+        "subGroup": "Gold",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 602775,
+        "name": "Burning Temple of Dur I",
+        "group": "Campaign",
+        "subGroup": "Gold",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 602858,
+        "name": "Burning Temple of Dur II",
+        "group": "Campaign",
+        "subGroup": "Gold",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 602870,
+        "name": "Burning Temple of Dur III",
+        "group": "Campaign",
+        "subGroup": "Gold",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 602878,
+        "name": "Burning Temple of Dur IV",
+        "group": "Campaign",
+        "subGroup": "Gold",
+        "isActive": true,
+        "scoreType": "gold"
     }
 ]
