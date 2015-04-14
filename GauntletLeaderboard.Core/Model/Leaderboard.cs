@@ -10,6 +10,7 @@ namespace GauntletLeaderboard.Core.Model
         public string Group { get; set; }
         public string SubGroup { get; set; }
         public string Special { get; set; }
+        public ScoreType ScoreType { get; set; }
         public IEnumerable<Entry> Entries { get; set; }
     }
 }

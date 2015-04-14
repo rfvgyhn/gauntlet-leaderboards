@@ -37,7 +37,8 @@ namespace GauntletLeaderboard.Core.Services
                            Name = l.Name,
                            IsActive = l.IsActive,
                            Group = l.Group,
-                           SubGroup = l.SubGroup
+                           SubGroup = l.SubGroup,
+                           ScoreType = l.ScoreType
                        })
                        .ToArray();
         }
@@ -54,7 +55,8 @@ namespace GauntletLeaderboard.Core.Services
                            IsActive = l.IsActive,
                            Group = l.Group,
                            SubGroup = l.SubGroup,
-                           Special = l.Special
+                           Special = l.Special,
+                           ScoreType = l.ScoreType
                        })
                        .ToArray();
         }
@@ -72,7 +74,8 @@ namespace GauntletLeaderboard.Core.Services
                            IsActive = l.IsActive,
                            Group = l.Group,
                            SubGroup = l.SubGroup,
-                           Special = l.Special
+                           Special = l.Special,
+                           ScoreType = l.ScoreType
                        })
                        .ToArray();
         }
@@ -89,7 +92,8 @@ namespace GauntletLeaderboard.Core.Services
                            IsActive = l.IsActive,
                            Name = l.Name,
                            SubGroup = l.SubGroup,
-                           Special = l.Special
+                           Special = l.Special,
+                           ScoreType = l.ScoreType
                        })
                        .Single();
         }

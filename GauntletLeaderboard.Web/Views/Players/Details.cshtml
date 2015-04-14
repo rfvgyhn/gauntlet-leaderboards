@@ -1,4 +1,5 @@
 ﻿@model GauntletLeaderboard.Web.Models.Players.DetailsViewModel
+@using GauntletLeaderboard.Core.Extensions;
 
 @{
     ViewBag.Title = Model.Player.Profile.PersonaName;
@@ -64,7 +65,13 @@
                 <td>@entry.Leaderboard.Group</td>
                 <td>@entry.Leaderboard.SubGroup</td>
                 <td>@entry.Leaderboard.Name</td>
-                <td>@entry.Score</td>
+                <td>
+                @if (entry.Leaderboard.ScoreType == GauntletLeaderboard.Core.Model.ScoreType.Time) {
+                    @entry.Score.ToTimeSpan().ToString("hh\\:mm\\:ss\\.fff")
+                } else {
+                    @entry.Score
+                }
+                </td>
             </tr>
         }
     </tbody>

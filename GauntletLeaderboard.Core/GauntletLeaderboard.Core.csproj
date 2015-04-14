@@ -48,6 +48,7 @@
     <Compile Include="Data\IProfileRepository.cs" />
     <Compile Include="Data\SteamProfileRepository.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="Extensions\NumberExtensions.cs" />
     <Compile Include="Extensions\ObjectCacheExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />

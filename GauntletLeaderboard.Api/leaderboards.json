@@ -5,7 +5,8 @@
         "group":  "Colosseum",
         "subGroup": "Season 3",
         "special": "Twister",
-        "isActive": true
+        "isActive": true,
+        "scoreType":  "gold"
     },
     {
         "id": 605893,
@@ -13,7 +14,8 @@
         "group":  "Colosseum",
         "subGroup": "Season 3",
         "special": "Twister",
-        "isActive": true
+        "isActive": true,
+        "scoreType":  "gold"
     },
     {
         "id": 605841,
@@ -21,7 +23,8 @@
         "group":  "Colosseum",
         "subGroup": "Season 3",
         "special": "Twister",
-        "isActive": true
+        "isActive": true,
+        "scoreType":  "gold"
     },
     {
         "id": 605897,
@@ -29,7 +32,8 @@
         "group":  "Colosseum",
         "subGroup": "Season 3",
         "special": "Twister",
-        "isActive": true
+        "isActive": true,
+        "scoreType":  "gold"
     },
     {
         "id": 607169,
@@ -37,7 +41,8 @@
         "group":  "Colosseum",
         "subGroup": "Season 3",
         "special": "Twister",
-        "isActive": true
+        "isActive": true,
+        "scoreType":  "gold"
     },
     {
         "id": 607189,
@@ -45,7 +50,8 @@
         "group":  "Colosseum",
         "subGroup": "Season 3",
         "special": "Twister",
-        "isActive": true
+        "isActive": true,
+        "scoreType":  "gold"
     },
     {
         "id": 605842,
@@ -53,7 +59,8 @@
         "group": "Colosseum",
         "subGroup": "Season 3",
         "special": "Twister",
-        "isActive": true
+        "isActive": true,
+        "scoreType":  "gold"
     },
     {
         "id": 605929,
@@ -61,7 +68,8 @@
         "group": "Colosseum",
         "subGroup": "Season 4",
         "special": "Poison",
-        "isActive": false
+        "isActive": false,
+        "scoreType":  "gold"
     },
     {
         "id": 605932,
@@ -69,7 +77,8 @@
         "group": "Colosseum",
         "subGroup": "Season 4",
         "special": "Poison",
-        "isActive": false
+        "isActive": false,
+        "scoreType":  "gold"
     },
     {
         "id": 605913,
@@ -77,7 +86,8 @@
         "group": "Colosseum",
         "subGroup": "Season 4",
         "special": "Poison",
-        "isActive": false
+        "isActive": false,
+        "scoreType":  "gold"
     },
     {
         "id": 605921,
@@ -85,7 +95,8 @@
         "group": "Colosseum",
         "subGroup": "Season 4",
         "special": "Poison",
-        "isActive": false
+        "isActive": false,
+        "scoreType":  "gold"
     },
     {
         "id": 607191,
@@ -93,7 +104,8 @@
         "group": "Colosseum",
         "subGroup": "Season 4",
         "special": "Poison",
-        "isActive": false
+        "isActive": false,
+        "scoreType":  "gold"
     },
     {
         "id": 607204,
@@ -101,7 +113,8 @@
         "group": "Colosseum",
         "subGroup": "Season 4",
         "special": "Poison",
-        "isActive": false
+        "isActive": false,
+        "scoreType":  "gold"
     },
     {
         "id": 605914,
@@ -109,6 +122,15 @@
         "group": "Colosseum",
         "subGroup": "Season 4",
         "special": "Poison",
-        "isActive": false
+        "isActive": false,
+        "scoreType":  "gold"
+    },
+    {
+        "id": 601565,
+        "name": "Caves Chapter 1",
+        "group": "Campaign",
+        "subGroup": "Speed Run",
+        "isActive": true,
+        "scoreType":  "time"
     }
 ]
