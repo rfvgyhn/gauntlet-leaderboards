@@ -25,6 +25,7 @@ namespace GauntletLeaderboard.Core.Services
                            Name = g.Key,
                            IsActive = g.Any(l => l.IsActive)
                        })
+                       .OrderBy(g => g.Name)
                        .ToArray();
         }
 
@@ -39,6 +40,7 @@ namespace GauntletLeaderboard.Core.Services
                            Name = g.Key,
                            IsActive = g.Any(l => l.IsActive)
                        })
+                       .OrderBy(g => g.Name)
                        .Single();
         }
 
@@ -55,6 +57,7 @@ namespace GauntletLeaderboard.Core.Services
                        })
                        .GroupBy(l => l.Name)
                        .Select(g => g.First())
+                       .OrderBy(g => g.Name)
                        .ToArray();
         }
 
@@ -71,6 +74,7 @@ namespace GauntletLeaderboard.Core.Services
                        })
                        .GroupBy(l => l.Name)
                        .Select(g => g.First())
+                       .OrderBy(g => g.Name)
                        .ToArray();
         }
     }

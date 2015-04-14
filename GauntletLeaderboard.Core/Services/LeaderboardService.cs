@@ -41,6 +41,7 @@ namespace GauntletLeaderboard.Core.Services
                            SubGroup = l.SubGroup,
                            ScoreType = l.ScoreType
                        })
+                       .OrderBy(g => g.Name)
                        .ToArray();
         }
 
@@ -59,6 +60,7 @@ namespace GauntletLeaderboard.Core.Services
                            Special = l.Special,
                            ScoreType = l.ScoreType
                        })
+                       .OrderBy(g => g.Name)
                        .ToArray();
         }
 
@@ -78,6 +80,7 @@ namespace GauntletLeaderboard.Core.Services
                            Special = l.Special,
                            ScoreType = l.ScoreType
                        })
+                       .OrderBy(g => g.Name)
                        .ToArray();
         }
 
