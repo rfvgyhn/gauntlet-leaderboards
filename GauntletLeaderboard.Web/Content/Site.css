@@ -54,6 +54,11 @@ footer a, footer a:hover {
     position: relative;
 }
 
+#leaderboard-special {
+    font-size: 2rem;
+    text-align: center;
+}
+
 #leaderboard.inactive::after {
     content: "Leaderboard is Not Yet Active";
     font-size: 3rem;
