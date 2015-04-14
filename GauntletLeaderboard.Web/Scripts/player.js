@@ -3,7 +3,12 @@
         $("table").DataTable({
             paging: false,
             info: false,
-            search: {smart: false},
+            search: { smart: false },
+            order: [
+                [1, "asc"],
+                [2, "asc"],
+                [3, "asc"],
+            ],
             language: {
                 search: "",
                 searchPlaceholder: "Filter"
