@@ -1,6 +1,7 @@
 module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
@@ -35,15 +36,21 @@ module.exports = function (grunt) {
             options: {
                 separator: ';'
             },
-            dist: {
+            
+            js: {
                 src: [
-                    '<%= jquery %>',
-                    '<%= bootstrapJs %>',
                     '<%= dataTables %>',
                     '<%= dataTablesBs %>',
                     '<%= mainJs %>',
                 ],
                 dest: 'tmp/<%= pkg.name %>.js'
+            },
+            css: {
+                src: [
+                    '<%= dataTablesBsCss %>',
+                    '<%= mainCss %>',
+                ],
+                dest: 'tmp/<%= pkg.name %>.css'
             }
         },
         uglify: {
@@ -52,13 +59,20 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+                    'dist/<%= pkg.name %>.min.js': ['<%= concat.js.dest %>']
                 }
             }
-        }, 
+        },
+        cssmin: {
+            target: {
+                files: {
+                    'dist/<%= pkg.name %>.min.css': ['<%= concat.css.dest %>']
+                }
+            }
+        }
     });
 
     // define tasks
     grunt.registerTask('default', ['copy']);
-    grunt.registerTask('prod', ['concat', 'uglify']);
+    grunt.registerTask('prod', ['concat', 'uglify', 'cssmin']);
 };
