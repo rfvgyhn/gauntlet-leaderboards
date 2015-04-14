@@ -2,9 +2,24 @@
     text-decoration: underline;
 }
 
+ul.nav-pills {
+    padding-bottom: .5rem;
+    text-align:center;
+    border-bottom: 1px dotted #7e6c55;
+}
+
+ul.nav-pills:not(:first-child) {
+    margin-top: .5rem;
+}
+
 .nav-pills a {
     text-decoration: none;
     border: 1px solid #7e6c55;
+}
+
+.nav-pills > li {
+    float:none;
+    display:inline-block;
 }
 
 .navbar a {
