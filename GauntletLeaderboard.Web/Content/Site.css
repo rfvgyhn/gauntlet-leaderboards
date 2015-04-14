@@ -26,6 +26,18 @@ ul.nav-pills:not(:first-child) {
     text-decoration: none;
 }
 
+footer {
+    text-align: center;
+}
+
+footer a {
+    color: #443E3E;
+}
+
+footer a, footer a:hover {
+    text-decoration: none;
+}
+
 #leaderboard td:first-child {
     width: 3rem;
 }
