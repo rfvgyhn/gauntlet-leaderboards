@@ -63,9 +63,9 @@ footer a, footer a:hover {
     content: "Leaderboard is Not Yet Active";
     font-size: 3rem;
     position: absolute;
-    top: 50%;
+    top: 2rem;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0);
     border: 1px solid #7E6C55;
     border-radius: 6px;
     background-color: #363131;
