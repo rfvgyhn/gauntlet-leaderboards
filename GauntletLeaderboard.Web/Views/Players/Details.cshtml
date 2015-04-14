@@ -9,16 +9,13 @@
 }
 
 <div class="row steam-profile">
-    <div class="col-md-3">
+    <div class="col-md-5">
         <a href="@Model.Player.Profile.ProfileUrl">
             <img src="@Model.Player.Profile.AvatarMedium" class="avatar state-@Model.Player.Profile.PersonaState" title="@Model.Player.Profile.PersonaState" />
             <h2>@Model.Player.Profile.PersonaName</h2>
         </a>
     </div>
-    <div class="col-md-3">
-
-    </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
     @if (Model.Player.Profile.AchievementPercentage != null) {
         <div>
             Achievements: <a href="@Html.Raw(Model.Player.Profile.ProfileUrl)stats/258970/achievements/">@Model.Player.Profile.AchievementPercentage.Value.ToString("0%")</a>
@@ -37,6 +34,9 @@
         }
         </div>
     }
+    </div>
+    <div class="col-md-3">
+
     </div>
 </div>
 
