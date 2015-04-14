@@ -3,13 +3,8 @@
 }
 
 ul.nav-pills {
-    padding-bottom: .5rem;
-    text-align:center;
+    text-align: center;
     border-bottom: 1px dotted #7e6c55;
-}
-
-ul.nav-pills:not(:first-child) {
-    margin-top: .5rem;
 }
 
 .nav-pills a {
@@ -18,8 +13,10 @@ ul.nav-pills:not(:first-child) {
 }
 
 .nav-pills > li {
-    float:none;
-    display:inline-block;
+    float: none;
+    display: inline-block;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 }
 
 .navbar a {
