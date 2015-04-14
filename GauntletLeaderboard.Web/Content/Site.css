@@ -36,22 +36,23 @@ ul.nav-pills:not(:first-child) {
 }
 
 #leaderboard.inactive table {
-    opacity: 0.5;
+    opacity: 0.1;
 }
 #leaderboard {
     position: relative;
 }
 
 #leaderboard.inactive::after {
-    content: "Leaderboard is Inactive";
+    content: "Leaderboard is Not Yet Active";
     font-size: 3rem;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 1px solid black;
-    background-color: #ddd;
-    box-shadow: 4px 4px 15px;
+    border: 1px solid #7E6C55;
+    border-radius: 6px;
+    background-color: #363131;
+    box-shadow: #3C3329 4px 4px 15px;
     padding: 0 1rem;
 }
 
