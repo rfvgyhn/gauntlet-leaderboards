@@ -17,7 +17,7 @@ namespace GauntletLeaderboard.Api.Modules
             Get["/{name}"] = parameters =>
             {
                 string group = parameters.name;
-                var result = groupService.GetSubGroupsByName(group);
+                var result = groupService.GetSubGroupsById(group);
 
                 return this.PrepareResult(result, leaderboardsLinkGenerator);
             };

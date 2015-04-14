@@ -1,4 +1,5 @@
-﻿using GauntletLeaderboard.Core.Services;
+﻿using GauntletLeaderboard.Core.Model;
+using GauntletLeaderboard.Core.Services;
 using GauntletLeaderboard.Web.Models;
 using GauntletLeaderboard.Web.Models.Home;
 using System;
@@ -36,7 +37,7 @@ namespace GauntletLeaderboard.Web.Controllers
             var model = new SubGroupsViewModel
             {
                 Groups = this.groupService.All(),
-                Group = this.groupService.GetByName(group),
+                Group = this.groupService.GetById(group),
                 SubGroups = this.groupService.GetSubGroupsByGroup(group)
             };
 
@@ -46,22 +47,22 @@ namespace GauntletLeaderboard.Web.Controllers
         public ActionResult Leaderboards(string group, string subgroup)
         {
             var leaderboards = this.leaderboardService.GetLeaderboardsBySubGroup(group, subgroup);
-            string groupName = null;
-            string subGroupName = null;
+            Group theGroup = null;
+            SubGroup subGroup = null;
 
             if (leaderboards.Any())
             {
                 var leadboard = leaderboards.First();
-                groupName = leadboard.Group;
-                subGroupName = leadboard.SubGroup;
+                theGroup = leadboard.Group;
+                subGroup = leadboard.SubGroup;
             }
 
             var model = new LeaderboardsViewModel
             {
                 Groups = this.groupService.All(),
-                Group = groupName,
+                Group = theGroup,
                 Leaderboards = leaderboards,
-                SubGroup = subGroupName,
+                SubGroup = subGroup,
                 SubGroups = this.groupService.GetSubGroupsByGroup(group)
             };
 
@@ -70,23 +71,12 @@ namespace GauntletLeaderboard.Web.Controllers
 
         public async Task<ActionResult> Leaderboard(string group, string subgroup, int leaderboardId, int? page = 1, int? pageSize = 20)
         {
-            var leaderboards = this.leaderboardService.GetLeaderboardsBySubGroup(group, subgroup);
-            string groupName = null;
-            string subGroupName = null;
-
-            if (leaderboards.Any())
-            {
-                var leadboard = leaderboards.First();
-                groupName = leadboard.Group;
-                subGroupName = leadboard.SubGroup;
-            }
-
             var model = new LeaderboardViewModel
             {
                 Entries = await this.leaderboardService.GetLeaderboardEntries(leaderboardId, page.Value, pageSize.Value),
                 Groups = this.groupService.All(),
                 Leaderboard = this.leaderboardService.GetLeaderboard(leaderboardId),
-                Leaderboards = leaderboards,
+                Leaderboards = this.leaderboardService.GetLeaderboardsBySubGroup(group, subgroup),
                 SubGroups = this.groupService.GetSubGroupsByGroup(group)
             };
 

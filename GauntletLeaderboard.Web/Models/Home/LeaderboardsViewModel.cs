@@ -8,8 +8,7 @@ namespace GauntletLeaderboard.Web.Models.Home
 {
     public class LeaderboardsViewModel : SubGroupsViewModel
     {
-        public string Group { get; set; }
-        public string SubGroup { get; set; }
+        public SubGroup SubGroup { get; set; }
         public IEnumerable<Leaderboard> Leaderboards { get; set; }
     }
 }

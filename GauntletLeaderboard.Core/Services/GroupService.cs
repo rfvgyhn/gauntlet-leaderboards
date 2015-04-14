@@ -1,4 +1,5 @@
 ﻿using GauntletLeaderboard.Core.Data;
+using GauntletLeaderboard.Core.Extensions;
 using GauntletLeaderboard.Core.Model;
 using System;
 using System.Collections.Generic;
@@ -29,12 +30,12 @@ namespace GauntletLeaderboard.Core.Services
                        .ToArray();
         }
 
-        public Group GetByName(string groupName)
+        public Group GetById(string groupId)
         {
             return this.leaderboardRepository
                        .GetLeaderboards()
                        .GroupBy(l => l.Group)
-                       .Where(g => g.Key.Equals(groupName, StringComparison.OrdinalIgnoreCase))
+                       .Where(g => g.Key.ToSlug().Equals(groupId, StringComparison.OrdinalIgnoreCase))
                        .Select(g => new Group
                        {
                            Name = g.Key,
@@ -44,14 +45,18 @@ namespace GauntletLeaderboard.Core.Services
                        .Single();
         }
 
-        public IEnumerable<SubGroup> GetSubGroupsByName(string subGroupName)
+        public IEnumerable<SubGroup> GetSubGroupsById(string subGroupId)
         {
             return this.leaderboardRepository
                        .GetLeaderboards()
-                       .Where(l => l.SubGroup.Equals(subGroupName, StringComparison.OrdinalIgnoreCase))
+                       .Where(l => l.SubGroup.ToSlug().Equals(subGroupId, StringComparison.OrdinalIgnoreCase))
                        .Select(l => new SubGroup
                        {
-                           Group = l.Group,
+                           Group = new Group
+                           {
+                               Name = l.Group,
+                               IsActive = l.IsActive
+                           },
                            Name = l.SubGroup,
                            IsActive = l.IsActive
                        })
@@ -61,14 +66,18 @@ namespace GauntletLeaderboard.Core.Services
                        .ToArray();
         }
 
-        public IEnumerable<SubGroup> GetSubGroupsByGroup(string groupName)
+        public IEnumerable<SubGroup> GetSubGroupsByGroup(string groupId)
         {
             return this.leaderboardRepository
                        .GetLeaderboards()
-                       .Where(l => l.Group.Equals(groupName, StringComparison.OrdinalIgnoreCase))
+                       .Where(l => l.Group.ToSlug().Equals(groupId, StringComparison.OrdinalIgnoreCase))
                        .Select(l => new SubGroup
                        {
-                           Group = l.Group,
+                           Group = new Group
+                           {
+                               Name = l.Group,
+                               IsActive = l.IsActive
+                           },
                            Name = l.SubGroup,
                            IsActive = l.IsActive
                        })

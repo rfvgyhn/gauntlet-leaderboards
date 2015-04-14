@@ -4,7 +4,7 @@
 @foreach (var group in Model)
 {
     <li>
-        @Html.ActionLink(group.Name, "Leaderboards", new { group = group.Group, subgroup = group.Id })
+        @Html.ActionLink(group.Name, "Leaderboards", new { group = group.Group.Id, subgroup = group.Id })
     </li>
 }
 </ul>

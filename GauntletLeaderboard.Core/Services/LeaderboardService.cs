@@ -37,8 +37,21 @@ namespace GauntletLeaderboard.Core.Services
                            Id = l.Id,
                            Name = l.Name,
                            IsActive = l.IsActive,
-                           Group = l.Group,
-                           SubGroup = l.SubGroup,
+                           Group = new Group
+                           {
+                               Name = l.Group,
+                               IsActive = l.IsActive
+                           },
+                           SubGroup = new SubGroup
+                           {
+                               Name = l.SubGroup,
+                               IsActive = l.IsActive,
+                               Group = new Group
+                               {
+                                   Name = l.Group,
+                                   IsActive = l.IsActive
+                               }
+                           },
                            ScoreType = l.ScoreType
                        })
                        .OrderBy(g => g.Name)
@@ -55,8 +68,21 @@ namespace GauntletLeaderboard.Core.Services
                            Id = l.Id,
                            Name = l.Name,
                            IsActive = l.IsActive,
-                           Group = l.Group,
-                           SubGroup = l.SubGroup,
+                           Group = new Group
+                           {
+                               Name = l.Group,
+                               IsActive = l.IsActive
+                           },
+                           SubGroup = new SubGroup
+                           {
+                               Name = l.SubGroup,
+                               IsActive = l.IsActive,
+                               Group = new Group
+                               {
+                                   Name = l.Group,
+                                   IsActive = l.IsActive
+                               }
+                           },
                            Special = l.Special,
                            ScoreType = l.ScoreType
                        })
@@ -64,19 +90,32 @@ namespace GauntletLeaderboard.Core.Services
                        .ToArray();
         }
 
-        public IEnumerable<Leaderboard> GetLeaderboardsBySubGroup(string groupName, string subGroup)
+        public IEnumerable<Leaderboard> GetLeaderboardsBySubGroup(string groupId, string subGroupId)
         {
             return this.leaderboardRepository
                        .GetLeaderboards()
-                       .Where(l => l.Group.Equals(groupName, StringComparison.OrdinalIgnoreCase) &&
-                                   l.SubGroup.Equals(subGroup, StringComparison.OrdinalIgnoreCase))
+                       .Where(l => l.Group.ToSlug().Equals(groupId, StringComparison.OrdinalIgnoreCase) &&
+                                   l.SubGroup.ToSlug().Equals(subGroupId, StringComparison.OrdinalIgnoreCase))
                        .Select(l => new Leaderboard
                        {
                            Id = l.Id,
                            Name = l.Name,
                            IsActive = l.IsActive,
-                           Group = l.Group,
-                           SubGroup = l.SubGroup,
+                           Group = new Group
+                           {
+                               Name = l.Group,
+                               IsActive = l.IsActive
+                           },
+                           SubGroup = new SubGroup
+                           {
+                               Name = l.SubGroup,
+                               IsActive = l.IsActive,
+                               Group = new Group
+                               {
+                                   Name = l.Group,
+                                   IsActive = l.IsActive
+                               }
+                           },
                            Special = l.Special,
                            ScoreType = l.ScoreType
                        })
@@ -91,11 +130,24 @@ namespace GauntletLeaderboard.Core.Services
                        .Where(l => l.Id == id)
                        .Select(l => new Leaderboard
                        {
-                           Group = l.Group,
                            Id = l.Id,
                            IsActive = l.IsActive,
                            Name = l.Name,
-                           SubGroup = l.SubGroup,
+                           Group = new Group
+                           {
+                               Name = l.Group,
+                               IsActive = l.IsActive
+                           },
+                           SubGroup = new SubGroup
+                           {
+                               Name = l.SubGroup,
+                               IsActive = l.IsActive,
+                               Group = new Group
+                               {
+                                   Name = l.Group,
+                                   IsActive = l.IsActive
+                               }
+                           },
                            Special = l.Special,
                            ScoreType = l.ScoreType
                        })

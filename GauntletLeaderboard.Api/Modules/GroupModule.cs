@@ -26,7 +26,7 @@ namespace GauntletLeaderboard.Api.Modules
             Get["/{name}"] = parameters =>
             {
                 string group = parameters.name;
-                var result = groupService.GetByName(group);
+                var result = groupService.GetById(group);
 
                 return this.PrepareResult(result, subGroupsLinkGenerator);
             };
