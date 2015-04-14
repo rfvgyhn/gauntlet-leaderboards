@@ -1,5 +1,131 @@
 ﻿[
     {
+        "id": 605653,
+        "name": "Lava 4",
+        "group": "Colosseum",
+        "subGroup": "Season 1",
+        "special": "Freeze",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 605843,
+        "name": "Lava 6",
+        "group": "Colosseum",
+        "subGroup": "Season 1",
+        "special": "Freeze",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 605637,
+        "name": "Caves 4",
+        "group": "Colosseum",
+        "subGroup": "Season 1",
+        "special": "Freeze",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 605641,
+        "name": "Caves 6",
+        "group": "Colosseum",
+        "subGroup": "Season 1",
+        "special": "Freeze",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 605605,
+        "name": "Crypt 4",
+        "group": "Colosseum",
+        "subGroup": "Season 1",
+        "special": "Freeze",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 605661,
+        "name": "Crypt 6",
+        "group": "Colosseum",
+        "subGroup": "Season 1",
+        "special": "Freeze",
+        "isActive": true,
+        "scoreType":  "gold"
+    },
+    {
+        "id": 605638,
+        "name": "Overall",
+        "group": "Colosseum",
+        "subGroup": "Season 1",
+        "special": "Freeze",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 605642,
+        "name": "Lava 4",
+        "group": "Colosseum",
+        "subGroup": "Season 2",
+        "special": "Mortar",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 605888,
+        "name": "Lava 6",
+        "group": "Colosseum",
+        "subGroup": "Season 2",
+        "special": "Mortar",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 605912,
+        "name": "Caves 4",
+        "group": "Colosseum",
+        "subGroup": "Season 2",
+        "special": "Mortar",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 605917,
+        "name": "Caves 6",
+        "group": "Colosseum",
+        "subGroup": "Season 2",
+        "special": "Mortar",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 605663,
+        "name": "Crypt 4",
+        "group": "Colosseum",
+        "subGroup": "Season 2",
+        "special": "Mortar",
+        "isActive": true,
+        "scoreType": "gold"
+    },
+    {
+        "id": 605632,
+        "name": "Crypt 6",
+        "group": "Colosseum",
+        "subGroup": "Season 2",
+        "special": "Mortar",
+        "isActive": true,
+        "scoreType":  "gold"
+    },
+    {
+        "id": 605633,
+        "name": "Overall",
+        "group": "Colosseum",
+        "subGroup": "Season 2",
+        "special": "Mortar",
+        "isActive": true,
+        "scoreType":  "gold"
+    },
+    {
         "id": 605889,
         "name": "Lava 4",
         "group":  "Colosseum",
@@ -122,6 +248,132 @@
         "group": "Colosseum",
         "subGroup": "Season 4",
         "special": "Poison",
+        "isActive": false,
+        "scoreType": "gold"
+    },
+    {
+        "id": 607205,
+        "name": "Lava 4",
+        "group": "Colosseum",
+        "subGroup": "Season 5",
+        "special": "Laser",
+        "isActive": false,
+        "scoreType": "gold"
+    },
+    {
+        "id": 607215,
+        "name": "Lava 6",
+        "group": "Colosseum",
+        "subGroup": "Season 5",
+        "special": "Laser",
+        "isActive": false,
+        "scoreType": "gold"
+    },
+    {
+        "id": 607213,
+        "name": "Caves 4",
+        "group": "Colosseum",
+        "subGroup": "Season 5",
+        "special": "Laser",
+        "isActive": false,
+        "scoreType": "gold"
+    },
+    {
+        "id": 607220,
+        "name": "Caves 6",
+        "group": "Colosseum",
+        "subGroup": "Season 5",
+        "special": "Laser",
+        "isActive": false,
+        "scoreType": "gold"
+    },
+    {
+        "id": 607252,
+        "name": "Crypt 4",
+        "group": "Colosseum",
+        "subGroup": "Season 5",
+        "special": "Laser",
+        "isActive": false,
+        "scoreType": "gold"
+    },
+    {
+        "id": 607256,
+        "name": "Crypt 6",
+        "group": "Colosseum",
+        "subGroup": "Season 5",
+        "special": "Laser",
+        "isActive": false,
+        "scoreType":  "gold"
+    },
+    {
+        "id": 607206,
+        "name": "Overall",
+        "group": "Colosseum",
+        "subGroup": "Season 5",
+        "special": "Laser",
+        "isActive": false,
+        "scoreType": "gold"
+    },
+    {
+        "id": 607287,
+        "name": "Lava 4",
+        "group": "Colosseum",
+        "subGroup": "Season 6",
+        "special": "Exploding",
+        "isActive": false,
+        "scoreType": "gold"
+    },
+    {
+        "id": 607338,
+        "name": "Lava 6",
+        "group": "Colosseum",
+        "subGroup": "Season 6",
+        "special": "Exploding",
+        "isActive": false,
+        "scoreType": "gold"
+    },
+    {
+        "id": 606070,
+        "name": "Caves 4",
+        "group": "Colosseum",
+        "subGroup": "Season 6",
+        "special": "Exploding",
+        "isActive": false,
+        "scoreType": "gold"
+    },
+    {
+        "id": 607266,
+        "name": "Caves 6",
+        "group": "Colosseum",
+        "subGroup": "Season 6",
+        "special": "Exploding",
+        "isActive": false,
+        "scoreType": "gold"
+    },
+    {
+        "id": 607280,
+        "name": "Crypt 4",
+        "group": "Colosseum",
+        "subGroup": "Season 6",
+        "special": "Exploding",
+        "isActive": false,
+        "scoreType": "gold"
+    },
+    {
+        "id": 607284,
+        "name": "Crypt 6",
+        "group": "Colosseum",
+        "subGroup": "Season 6",
+        "special": "Exploding",
+        "isActive": false,
+        "scoreType":  "gold"
+    },
+    {
+        "id": 606069,
+        "name": "Overall",
+        "group": "Colosseum",
+        "subGroup": "Season 6",
+        "special": "Exploding",
         "isActive": false,
         "scoreType":  "gold"
     },
