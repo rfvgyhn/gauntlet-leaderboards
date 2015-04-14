@@ -8,7 +8,9 @@
 @Html.Partial("_SubGroups", Model.SubGroups)
 @Html.Partial("_Leaderboards", Model.Leaderboards)
 
+@if (@Model.Leaderboard.Special != null) {
 <div id="leaderboard-special">Special: @Model.Leaderboard.Special</div>
+}
 <div id="leaderboard" class="@Model.Status">
     <table class="table table-striped">
         <thead>
