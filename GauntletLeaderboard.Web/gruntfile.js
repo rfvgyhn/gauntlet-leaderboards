@@ -10,7 +10,8 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         jquery: 'bower_components/jquery/dist/jquery.js',
         mainJs: 'scripts/main.js',
-        mainCss: 'content/site.css',
+        mainCss: 'content/Site.css',
+        bootstrapTheme: 'content/gauntlet-leaderboards.bootstrap.theme.css',
         dataTables: 'bower_components/datatables/media/js/jquery.dataTables.js',
         dataTablesBs: 'bower_components/datatables-bootstrap3/BS3/assets/js/datatables.js',
         bootstrapJs: 'bower_components/bootstrap/dist/js/bootstrap.js',
@@ -47,6 +48,7 @@ module.exports = function (grunt) {
             },
             css: {
                 src: [
+                    '<%= bootstrapTheme %>',
                     '<%= dataTablesBsCss %>',
                     '<%= mainCss %>',
                 ],
@@ -55,7 +57,7 @@ module.exports = function (grunt) {
         },
         uglify: {
             options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> *//n'
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */'
             },
             dist: {
                 files: {
