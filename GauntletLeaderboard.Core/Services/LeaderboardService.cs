@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -131,7 +132,7 @@ namespace GauntletLeaderboard.Core.Services
             var allEntries = new List<Task<Tuple<Entry[], int>>>();
 
             foreach (var id in leaderboardIds)
-                allEntries.Add(FetchLeaderboardEntries(id, 1, int.MaxValue));
+                allEntries.Add(FetchLeaderboardEntries(id, profileId));
 
             await Task.WhenAll(allEntries.ToArray());
             var entries = allEntries.SelectMany(t => t.Result.Item1)
@@ -140,24 +141,48 @@ namespace GauntletLeaderboard.Core.Services
             return entries;
         }
 
+        private async Task<Tuple<Entry[], int>> FetchLeaderboardEntries(int id, long profileId)
+        {
+            var key = "leaderboardEntires:{0}:{1}".FormatWith(id, profileId);
+            Func<int, int, string> urlFactory = (s, e) =>
+            {
+                return this.leaderboardUrl.Replace("{id}", id.ToString())
+                                         .Replace("{start}", s.ToString())
+                                         .Replace("{end}", e.ToString()) + "&steamid=" + profileId.ToString();
+            };
+
+            return await Fetch(id, key, urlFactory);
+        }
+
         private async Task<Tuple<Entry[], int>> FetchLeaderboardEntries(int id, int page, int pageSize)
         {
-            var cacheItemPolicy = new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.UtcNow.AddMinutes(1) };
             var start = ((page - 1) * pageSize) + 1;
             var end = ((page - 1) * pageSize) + pageSize;
-            var url = this.leaderboardUrl.Replace("{id}", id.ToString())
-                                         .Replace("{start}", start.ToString())
-                                         .Replace("{end}", end.ToString());
-            var total = 0;
             var key = "leaderboardEntires:{0}:{1}:{2}".FormatWith(id, page, pageSize);
-            var entries = await this.cache.GetOrAdd(key, async () =>
+            Func<int, int, string> urlFactory = (s, e) =>
             {
-                using (var client = new WebClient())
+                return this.leaderboardUrl.Replace("{id}", id.ToString())
+                                          .Replace("{start}", s.ToString())
+                                          .Replace("{end}", e.ToString());
+            };
+
+            return await Fetch(id, key, urlFactory, start, end);
+        }
+
+        private async Task<Tuple<Entry[], int>> Fetch(int id, string cacheKey, Func<int, int, string> urlFactory, int start = 0, int end = 5000)
+        {
+            var total = 0;
+            var cacheItemPolicy = new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.UtcNow.AddMinutes(1) };
+            var entries = await this.cache.GetOrAdd(cacheKey, async () =>
+            {
+                using (var client = new HttpClient())
                 {
-                    var stats = await client.DownloadStringTaskAsync(url);
+                    var url = urlFactory(start, end);
+                    var stats = await client.GetStringAsync(url);
                     var doc = XDocument.Parse(stats);
 
                     total = int.Parse(doc.Root.Elements("totalLeaderboardEntries").Single().Value);
+                    
                     var items = doc.Root.Descendants("entry")
                                    .Deserialize<Entry>()
                                    .OrderBy(e => e.Rank)
