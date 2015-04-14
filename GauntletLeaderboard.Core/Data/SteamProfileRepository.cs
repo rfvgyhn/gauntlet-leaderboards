@@ -8,6 +8,7 @@ using GauntletLeaderboard.Core.Extensions;
 using System.Runtime.Caching;
 using Newtonsoft.Json.Linq;
 using System.Net;
+using System.Net.Http;
 
 namespace GauntletLeaderboard.Core.Data
 {
@@ -73,12 +74,12 @@ namespace GauntletLeaderboard.Core.Data
 
             return await this.Cache.GetOrAdd(key, async () =>
             {
-                using (var client = new WebClient())
+                using (var client = new HttpClient())
                 {
                     var profileUrl = this.ProfileUrl.Replace("{steamids}", steamIdsParam);
-                    var response = await client.DownloadStringTaskAsync(profileUrl);
+                    var response = await client.GetStringAsync(profileUrl);
                     var json = JObject.Parse(response);
-
+                    
                     return json["response"]["players"].ToObject<SteamProfile[]>();
                 }
             }, this.CacheItemPolicy);
