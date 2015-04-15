@@ -42,12 +42,12 @@ namespace GauntletLeaderboard.Core.Data
             if (profile == null)
                 return null;
 
-            using (var client = new WebClient())
+            using (var client = new HttpClient())
             {
                 try
                 {
-                    var badges = await client.DownloadStringTaskAsync(badgesUrl);
-                    var achievements = await client.DownloadStringTaskAsync(achievementsUrl);
+                    var badges = await client.GetStringAsync(badgesUrl);
+                    var achievements = await client.GetStringAsync(achievementsUrl);
                     
 
                     var json = JObject.Parse(achievements);
@@ -56,7 +56,11 @@ namespace GauntletLeaderboard.Core.Data
                     profile.AchievementPercentage = (float)achieved / total;
 
                     json = JObject.Parse(badges);
-                    profile.Badges = json["response"]["badges"].ToObject<SteamBadge[]>().Where(b => b.AppId == this.AppId);
+
+                    if (json["response"]["badges"] != null)
+                        profile.Badges = json["response"]["badges"].ToObject<SteamBadge[]>().Where(b => b.AppId == this.AppId);
+                    else
+                        profile.Badges = Enumerable.Empty<SteamBadge>();
                 }
                 catch (WebException)
                 {
@@ -92,10 +96,10 @@ namespace GauntletLeaderboard.Core.Data
 
             return await this.Cache.GetOrAdd(key, async () =>
             {
-                using (var client = new WebClient())
+                using (var client = new HttpClient())
                 {
                     var url = this.VanityUrl.Replace("{name}", name);
-                    var response = await client.DownloadStringTaskAsync(url);
+                    var response = await client.GetStringAsync(url);
                     var json = JObject.Parse(response);
                     var steamId = json["response"]["steamid"];
 
