@@ -145,7 +145,7 @@
       <Link>leaderboards.json</Link>
     </Content>
     <Content Include="Content\gauntlet-leaderboards.bootstrap.theme.css" />
-    <None Include="Properties\PublishProfiles\gauntlet-leaderboards.pubxml" />
+    <None Include="Properties\PublishProfiles\appveyor.pubxml" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\player.js" />
     <Content Include="Web.config" />
@@ -208,6 +208,11 @@
       <UserProperties packages_1json__JSONSchema="http://schemastore/schemas/json/package" />
     </VisualStudio>
   </ProjectExtensions>
+  <Target Name="BeforeBuild"  Condition=" '$(Configuration)' == 'Release' ">
+    <ItemGroup>
+      <Content Include="dist\**\*" />
+    </ItemGroup>
+  </Target>
   <Target Name="CopyLinkedContentFiles" BeforeTargets="Build">
     <Copy SourceFiles="%(Content.Identity)" DestinationFiles="%(Content.Link)" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" Condition="'%(Content.Link)' != ''" />
   </Target>
