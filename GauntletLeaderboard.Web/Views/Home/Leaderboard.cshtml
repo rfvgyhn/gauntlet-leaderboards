@@ -2,7 +2,7 @@
 @using GauntletLeaderboard.Core.Extensions;
 
 @{
-    ViewBag.Title = string.Format("{0}::{1}::{2}", Model.Leaderboard.Group, Model.Leaderboard.SubGroup, Model.Leaderboard.Name);
+    ViewBag.Title = string.Format("{0}::{1}::{2}", Model.Leaderboard.Group.Name, Model.Leaderboard.SubGroup.Name, Model.Leaderboard.Name);
 }
 
 @Html.Partial("_Groups", Model.Groups)
