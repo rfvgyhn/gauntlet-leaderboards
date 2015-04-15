@@ -62,7 +62,7 @@ namespace GauntletLeaderboard.Core.Data
                     else
                         profile.Badges = Enumerable.Empty<SteamBadge>();
                 }
-                catch (WebException)
+                catch (HttpRequestException)
                 {
                     // swallow
                 }
