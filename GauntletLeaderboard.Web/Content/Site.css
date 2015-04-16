@@ -35,8 +35,6 @@ footer a, footer a:hover {
     text-decoration: none;
 }
 
-
-
 #leaderboard.inactive table {
     opacity: 0.1;
 }
@@ -116,6 +114,13 @@ ul.toons li {
     background: url(images/toons.png) no-repeat;
 }
 
+.toons.ordered .toon:not(:first-child) {
+    width: 15px;
+    height: 15px;
+    background-size: cover;
+    vertical-align: super;
+}
+
 .toon-warrior {
     background-position: 0 0;
 }
@@ -134,6 +139,26 @@ ul.toons li {
 
 .toon-necromancer {
     background-position: -96px 0;
+}
+
+.toons.ordered .toon-warrior:not(:first-child) {
+    background-position: 0 0;
+}
+
+.toons.ordered .toon-valkryie:not(:first-child) {
+    background-position: -15px 0;
+}
+
+.toons.ordered .toon-elf:not(:first-child) {
+    background-position: -30px 0;
+}
+
+.toons.ordered .toon-wizard:not(:first-child) {
+    background-position: -45px 0;
+}
+
+.toons.ordered .toon-necromancer:not(:first-child) {
+    background-position: -60px 0;
 }
 
 .steambadge {

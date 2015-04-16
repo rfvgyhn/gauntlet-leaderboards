@@ -55,9 +55,15 @@ namespace GauntletLeaderboard.Core.Model
         {
             Details = StringToByteArray(hexString);
 
+            toons = new List<Toon>();
             var toon = (Toon)Details[CharacterOffset];
-            toons = new List<Toon>() { toon };
-            var team = (Toon)Details[TeamOffset] & ~toon;
+            var team = (Toon)Details[TeamOffset];
+
+            if (toon != team)
+            {
+                toons.Add(toon);
+                team &= ~toon;
+            }
 
             foreach (Toon value in Enum.GetValues(team.GetType()))
             {

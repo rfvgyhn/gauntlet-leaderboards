@@ -50,7 +50,7 @@
                 </td>
             @if (@entry.Leaderboard.Name != "Overall") {
                 <td>
-                    <ul class="toons">
+                    <ul class="toons ordered">
                     @foreach (var toon in entry.Toons) {
                         <li class="toon toon-@toon.ToString().ToLower()" title="@toon"><span class="sr-only">@toon</span></li>
                     }
