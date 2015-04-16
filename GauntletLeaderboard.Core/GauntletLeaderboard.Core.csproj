@@ -55,6 +55,8 @@
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Extensions\XElementExtensions.cs" />
     <Compile Include="IPagedResult.cs" />
+    <Compile Include="Model\Toon.cs" />
+    <Compile Include="Model\Difficulty.cs" />
     <Compile Include="Model\Entry.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\InterestedLeaderboard.cs" />

@@ -39,8 +39,13 @@ footer a, footer a:hover {
     width: 3rem;
 }
 
-#leaderboard td:last-child {
+#leaderboard td:nth-child(3) {
     width: 8rem;
+    text-align: right;
+}
+
+#leaderboard td:nth-child(4) {
+    width: 13rem;
     text-align: right;
 }
 
@@ -68,6 +73,42 @@ footer a, footer a:hover {
     background-color: #363131;
     box-shadow: #3C3329 4px 4px 15px;
     padding: 0 1rem;
+}
+
+.toons {
+    padding: 0;
+    margin: 0;
+    height: 24px;
+}
+
+.toons li {
+    display: inline-block;
+}
+
+.toon {
+    width: 24px;
+    height: 24px;
+    background: url(images/toons.png) no-repeat;
+}
+
+.toon-warrior {
+    background-position: 0 0;
+}
+
+.toon-valkryie {
+    background-position: -24px 0;
+}
+
+.toon-elf {
+    background-position: -48px 0;
+}
+
+.toon-wizard {
+    background-position: -72px 0;
+}
+
+.toon-necromancer {
+    background-position: -96px 0;
 }
 
 .steambadge {

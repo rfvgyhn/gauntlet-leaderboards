@@ -19,6 +19,7 @@
                 <th>Rank</th>
                 <th>Player</th>
                 <th>Score</th>
+                <th>Characters</th>
             </tr>
         </thead>
         <tbody>
@@ -37,6 +38,15 @@
                     @entry.Score.ToTimeSpan().ToString("hh\\:mm\\:ss\\.fff")
                 } else {
                     @entry.Score
+                }
+                </td>
+                <td>
+                 @if (@entry.Leaderboard.Name != "Overall") {
+                    <ul class="toons">
+                    @foreach (var toon in entry.Toons) {
+                        <li class="toon toon-@toon.ToString().ToLower()"><span class="sr-only">@toon.ToString()</span></li>
+                    }
+                    </ul>
                 }
                 </td>
             </tr>
