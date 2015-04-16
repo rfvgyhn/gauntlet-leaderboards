@@ -87,7 +87,7 @@
                 @if (@entry.Leaderboard.Name != "Overall") {
                     <ul class="toons">
                     @foreach (var toon in entry.Toons) {
-                        <li class="toon toon-@toon.ToString().ToLower()"><span class="sr-only">@toon.ToString()</span></li>
+                        <li class="toon toon-@toon.ToString().ToLower()" title="@toon"><span class="sr-only">@toon</span></li>
                     }
                     </ul>
                 }
