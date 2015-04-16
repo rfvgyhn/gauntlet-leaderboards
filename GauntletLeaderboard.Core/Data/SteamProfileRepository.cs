@@ -19,18 +19,14 @@ namespace GauntletLeaderboard.Core.Data
         readonly string BadgesUrl;
         readonly string VanityUrl;
         readonly int AppId;
-        readonly ObjectCache Cache;
-        readonly CacheItemPolicy CacheItemPolicy;
 
-        public SteamProfileRepository(string steamApiKey, string profileUrl, string achievementsUrl, string badgesUrl, string vanityUrl, int appId, ObjectCache cache)
+        public SteamProfileRepository(string steamApiKey, string profileUrl, string achievementsUrl, string badgesUrl, string vanityUrl, int appId)
         {
             this.ProfileUrl = profileUrl.Replace("{key}", steamApiKey);
             this.AchievementsUrl = achievementsUrl.Replace("{key}", steamApiKey);
             this.BadgesUrl = badgesUrl.Replace("{key}", steamApiKey);
             this.VanityUrl = vanityUrl.Replace("{key}", steamApiKey);
             this.AppId = appId;
-            this.Cache = cache;
-            this.CacheItemPolicy = new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.UtcNow.AddMinutes(5) };
         }
 
         public async Task<SteamProfile> GetById(long id)
@@ -76,17 +72,14 @@ namespace GauntletLeaderboard.Core.Data
             var steamIdsParam = ids.JoinWith(",");
             var key = "steamProfiles:{0}".FormatWith(steamIdsParam);
 
-            return await this.Cache.GetOrAdd(key, async () =>
+            using (var client = new HttpClient())
             {
-                using (var client = new HttpClient())
-                {
-                    var profileUrl = this.ProfileUrl.Replace("{steamids}", steamIdsParam);
-                    var response = await client.GetStringAsync(profileUrl);
-                    var json = JObject.Parse(response);
+                var profileUrl = this.ProfileUrl.Replace("{steamids}", steamIdsParam);
+                var response = await client.GetStringAsync(profileUrl);
+                var json = JObject.Parse(response);
                     
-                    return json["response"]["players"].ToObject<SteamProfile[]>();
-                }
-            }, this.CacheItemPolicy);
+                return json["response"]["players"].ToObject<SteamProfile[]>();
+            }
         }
 
         public async Task<long?> ResolveVanityName(string name)
@@ -94,21 +87,18 @@ namespace GauntletLeaderboard.Core.Data
             var key = "vanityUrl:{0}".FormatWith(name);
             var cacheItemPolicy = new CacheItemPolicy { SlidingExpiration = TimeSpan.FromMinutes(5) };
 
-            return await this.Cache.GetOrAdd(key, async () =>
+            using (var client = new HttpClient())
             {
-                using (var client = new HttpClient())
-                {
-                    var url = this.VanityUrl.Replace("{name}", name);
-                    var response = await client.GetStringAsync(url);
-                    var json = JObject.Parse(response);
-                    var steamId = json["response"]["steamid"];
+                var url = this.VanityUrl.Replace("{name}", name);
+                var response = await client.GetStringAsync(url);
+                var json = JObject.Parse(response);
+                var steamId = json["response"]["steamid"];
 
-                    if (steamId == null)
-                        return null;
+                if (steamId == null)
+                    return null;
 
-                    return steamId.ToObject<long?>();
-                }
-            }, cacheItemPolicy);
+                return steamId.ToObject<long?>();
+            }
         }
     }
 }

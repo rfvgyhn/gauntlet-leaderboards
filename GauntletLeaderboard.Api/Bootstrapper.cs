@@ -29,7 +29,7 @@ namespace GauntletLeaderboard.Api
             container.Register<IInterestedLeaderboardRepository>((c, p) => new FileInterestedLeaderboardRepository(Path.Combine(container.Resolve<IRootPathProvider>().GetRootPath(), "leaderboards.json"), c.Resolve<ObjectCache>()));
             container.Register<IGroupService, GroupService>();
             container.Register<IPlayerService, PlayerService>();
-            container.Register<IProfileRepository>((c, p) => new SteamProfileRepository(steamApiKey, profileUrl, achievementsUrl, badgesUrl, vanityUrl, appId, c.Resolve<ObjectCache>()));
+            container.Register<IProfileRepository>((c, p) => new SteamProfileRepository(steamApiKey, profileUrl, achievementsUrl, badgesUrl, vanityUrl, appId));
             container.Register<ILeaderboardService>((c, p) => new LeaderboardService(leaderboardUrl, c.Resolve<IInterestedLeaderboardRepository>(), c.Resolve<IProfileRepository>(), c.Resolve<ObjectCache>()));
         }
 

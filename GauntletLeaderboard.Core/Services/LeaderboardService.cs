@@ -156,11 +156,14 @@ namespace GauntletLeaderboard.Core.Services
 
         public async Task<IPagedResult<Entry>> GetLeaderboardEntries(int id, int page, int pageSize)
         {
-            var entryItems = await FetchLeaderboardEntries(id, page, pageSize);
+            var entriesKey = "GetLeaderboardEntries:entries:{0}:{1}:{2}".FormatWith(id, page, pageSize);
+            var profilesKey = "GetLeaderboardEntries:profiles:{0}:{1}:{2}".FormatWith(id, page, pageSize);
+            var cacheItemPolicy = new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.UtcNow.AddMinutes(1) };
+            var entryItems = await this.cache.GetOrAdd(entriesKey, async () => await FetchLeaderboardEntries(id, page, pageSize), cacheItemPolicy);
             var entries = entryItems.Item1;
             var totalItems = entryItems.Item2;
             var steamIds = entries.Select(e => e.SteamId);
-            var profiles = await this.profileRepository.GetByIds(steamIds);
+            var profiles = await this.cache.GetOrAdd(profilesKey, async () => await this.profileRepository.GetByIds(steamIds), cacheItemPolicy);
 
             foreach (var entry in entries)
                 entry.Player = profiles.Where(p => p.SteamId == entry.SteamId).Single();
@@ -170,8 +173,20 @@ namespace GauntletLeaderboard.Core.Services
 
         public async Task<IEnumerable<Entry>> GetLeaderboardEntriesForPlayer(long id)
         {
-            var entries = await FetchLeaderboardEntries(id);
-            var profile = await this.profileRepository.GetById(id);
+            var key = "GetLeaderboardEntriesForPlayer:{0}".FormatWith(id);
+            var cacheItemPolicy = new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.UtcNow.AddMinutes(1) };
+            var items = await this.cache.GetOrAdd(key, async () =>
+            {
+                var entriesTask = FetchLeaderboardEntries(id);
+                var profileTask = this.profileRepository.GetById(id);
+
+                await Task.WhenAll(entriesTask, profileTask);
+
+                return new Tuple<IEnumerable<Entry>, SteamProfile>(entriesTask.Result, profileTask.Result);
+            }, cacheItemPolicy);
+
+            var entries = items.Item1;
+            var profile = items.Item2;
 
             foreach (var entry in entries)
                 entry.Player = profile;
@@ -181,7 +196,6 @@ namespace GauntletLeaderboard.Core.Services
 
         private async Task<IEnumerable<Entry>> FetchLeaderboardEntries(long profileId)
         {
-            var cacheItemPolicy = new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.UtcNow.AddMinutes(1) };
             var leaderboardIds = this.leaderboardRepository.GetLeaderboards().Select(l => l.Id);
 
             var allEntries = new List<Task<Tuple<Entry[], int>>>();
@@ -198,7 +212,6 @@ namespace GauntletLeaderboard.Core.Services
 
         private async Task<Tuple<Entry[], int>> FetchLeaderboardEntries(int id, long profileId)
         {
-            var key = "leaderboardEntires:{0}:{1}".FormatWith(id, profileId);
             Func<int, int, string> urlFactory = (s, e) =>
             {
                 return this.leaderboardUrl.Replace("{id}", id.ToString())
@@ -206,14 +219,13 @@ namespace GauntletLeaderboard.Core.Services
                                          .Replace("{end}", e.ToString()) + "&steamid=" + profileId.ToString();
             };
 
-            return await Fetch(id, key, urlFactory);
+            return await Fetch(id, urlFactory);
         }
 
         private async Task<Tuple<Entry[], int>> FetchLeaderboardEntries(int id, int page, int pageSize)
         {
             var start = ((page - 1) * pageSize) + 1;
             var end = ((page - 1) * pageSize) + pageSize;
-            var key = "leaderboardEntires:{0}:{1}:{2}".FormatWith(id, page, pageSize);
             Func<int, int, string> urlFactory = (s, e) =>
             {
                 return this.leaderboardUrl.Replace("{id}", id.ToString())
@@ -221,34 +233,30 @@ namespace GauntletLeaderboard.Core.Services
                                           .Replace("{end}", e.ToString());
             };
 
-            return await Fetch(id, key, urlFactory, start, end);
+            return await Fetch(id, urlFactory, start, end);
         }
 
-        private async Task<Tuple<Entry[], int>> Fetch(int id, string cacheKey, Func<int, int, string> urlFactory, int start = 0, int end = 5000)
+        private async Task<Tuple<Entry[], int>> Fetch(int id, Func<int, int, string> urlFactory, int start = 0, int end = 5000)
         {
             var total = 0;
-            var cacheItemPolicy = new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.UtcNow.AddMinutes(1) };
-            var entries = await this.cache.GetOrAdd(cacheKey, async () =>
+            Entry[] entries;
+
+            using (var client = new HttpClient())
             {
-                using (var client = new HttpClient())
-                {
-                    var url = urlFactory(start, end);
-                    var stats = await client.GetStringAsync(url);
-                    var doc = XDocument.Parse(stats);
+                var url = urlFactory(start, end);
+                var stats = await client.GetStringAsync(url);
+                var doc = XDocument.Parse(stats);
 
-                    total = int.Parse(doc.Root.Elements("totalLeaderboardEntries").Single().Value);
+                total = int.Parse(doc.Root.Elements("totalLeaderboardEntries").Single().Value);
                     
-                    var items = doc.Root.Descendants("entry")
-                                   .Deserialize<Entry>()
-                                   .OrderBy(e => e.Rank)
-                                   .ToArray();
+                entries = doc.Root.Descendants("entry")
+                                .Deserialize<Entry>()
+                                .OrderBy(e => e.Rank)
+                                .ToArray();
 
-                    foreach (var item in items)
-                        item.Leaderboard = GetLeaderboard(id);
-
-                    return items;
-                }
-            }, cacheItemPolicy);
+                foreach (var entry in entries)
+                    entry.Leaderboard = GetLeaderboard(id);
+            }
 
             return new Tuple<Entry[], int>(entries, total);
         }
