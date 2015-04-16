@@ -9,6 +9,7 @@ namespace GauntletLeaderboard.Core.Model
     {
         const int DifficultyOffset = 1;
         const int CharacterOffset = 4;
+        const int TeamOffset = 8;
         string detailsString;
         List<Toon> toons;
 
@@ -54,12 +55,13 @@ namespace GauntletLeaderboard.Core.Model
         {
             Details = StringToByteArray(hexString);
 
-            toons = new List<Toon>();
             var toon = (Toon)Details[CharacterOffset];
+            toons = new List<Toon>() { toon };
+            var team = (Toon)Details[TeamOffset] & ~toon;
 
-            foreach (Toon value in Enum.GetValues(toon.GetType()))
+            foreach (Toon value in Enum.GetValues(team.GetType()))
             {
-                if (toon.HasFlag(value))
+                if (team.HasFlag(value))
                     toons.Add(value);
             }
             Difficulty = (Difficulty)Details[DifficultyOffset];
