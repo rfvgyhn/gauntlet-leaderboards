@@ -47,7 +47,16 @@
 </div>
 
 @if (Model.Player.Entries.Any()) {
-<table class="table table-striped">
+<table class="table table-striped" id="player-scores">
+    <colgroup>
+        <col class="rank" />
+        <col class="group" />
+        <col class="subgroup" />
+        <col class="main"/>
+        <col class="score" />
+        <col class="toons" />
+        <col class="difficulty" />
+    </colgroup>
     <thead>
         <tr>
             <th>Rank</th>

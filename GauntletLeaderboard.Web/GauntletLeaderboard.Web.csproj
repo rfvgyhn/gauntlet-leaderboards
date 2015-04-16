@@ -135,6 +135,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\toons.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -208,7 +209,7 @@
       <UserProperties packages_1json__JSONSchema="http://schemastore/schemas/json/package" />
     </VisualStudio>
   </ProjectExtensions>
-  <Target Name="BeforeBuild"  Condition=" '$(Configuration)' == 'Release' ">
+  <Target Name="BeforeBuild" Condition=" '$(Configuration)' == 'Release' ">
     <ItemGroup>
       <Content Include="dist\**\*" />
     </ItemGroup>

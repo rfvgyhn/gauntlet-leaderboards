@@ -35,23 +35,12 @@ footer a, footer a:hover {
     text-decoration: none;
 }
 
-#leaderboard td:first-child {
-    width: 3rem;
-}
 
-#leaderboard td:nth-child(3) {
-    width: 8rem;
-    text-align: right;
-}
-
-#leaderboard td:nth-child(4) {
-    width: 13rem;
-    text-align: right;
-}
 
 #leaderboard.inactive table {
     opacity: 0.1;
 }
+
 #leaderboard {
     position: relative;
 }
@@ -75,13 +64,49 @@ footer a, footer a:hover {
     padding: 0 1rem;
 }
 
-.toons {
+col.rank {
+    width: 7rem;
+}
+
+col.score {
+    width: 8rem;
+    text-align: right;
+}
+
+col.toons {
+    width: 13rem;
+    text-align: left;
+}
+
+col.main {
+    width: auto;
+}
+
+col.group {
+    width: 4rem;
+}
+
+col.subgroup {
+    width: 11rem;
+}
+
+#player-scores td:nth-child(5) {
+    width: 11rem;
+}
+#player-scores td:nth-child(6) {
+    width: 13rem;
+}
+#player-scores td:nth-child(7) {
+    width: 11rem;
+}
+
+ul.toons {
     padding: 0;
     margin: 0;
     height: 24px;
 }
 
-.toons li {
+ul.toons li {
     display: inline-block;
 }
 

@@ -14,12 +14,20 @@
 }
 <div id="leaderboard" class="@Model.Status">
     <table class="table table-striped">
+        <colgroup>
+            <col class="rank" />
+            <col class="main"/>
+            <col class="score" />
+            <col class="toons" />
+        </colgroup>
         <thead>
             <tr>
                 <th>Rank</th>
                 <th>Player</th>
                 <th>Score</th>
-                <th>Characters</th>
+            @if (@Model.Leaderboard.Name != "Overall") {
+                <th></th>
+            }
             </tr>
         </thead>
         <tbody>
@@ -40,15 +48,15 @@
                     @entry.Score
                 }
                 </td>
+            @if (@entry.Leaderboard.Name != "Overall") {
                 <td>
-                 @if (@entry.Leaderboard.Name != "Overall") {
                     <ul class="toons">
                     @foreach (var toon in entry.Toons) {
                         <li class="toon toon-@toon.ToString().ToLower()"><span class="sr-only">@toon.ToString()</span></li>
                     }
                     </ul>
-                }
                 </td>
+            }
             </tr>
         }
         </tbody>
