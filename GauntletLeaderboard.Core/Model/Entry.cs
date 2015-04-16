@@ -49,6 +49,9 @@ namespace GauntletLeaderboard.Core.Model
         public IEnumerable<Toon> Toons { get { return toons; } }
 
         [XmlIgnore]
+        public bool HasSeperateTeamData { get; private set; }
+
+        [XmlIgnore]
         public Difficulty Difficulty { get; private set; }
 
         private void ParseAndSetDetails(string hexString)
@@ -63,6 +66,7 @@ namespace GauntletLeaderboard.Core.Model
             {
                 toons.Add(toon);
                 team &= ~toon;
+                HasSeperateTeamData = true;
             }
 
             foreach (Toon value in Enum.GetValues(team.GetType()))

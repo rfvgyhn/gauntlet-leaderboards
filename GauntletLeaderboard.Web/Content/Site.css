@@ -114,7 +114,7 @@ ul.toons li {
     background: url(images/toons.png) no-repeat;
 }
 
-.toons.ordered .toon:not(:first-child) {
+.toon.ordered:not(:first-child) {
     width: 15px;
     height: 15px;
     background-size: cover;
@@ -141,23 +141,23 @@ ul.toons li {
     background-position: -96px 0;
 }
 
-.toons.ordered .toon-warrior:not(:first-child) {
+.toon-warrior.ordered:not(:first-child) {
     background-position: 0 0;
 }
 
-.toons.ordered .toon-valkryie:not(:first-child) {
+.toon-valkryie.ordered:not(:first-child) {
     background-position: -15px 0;
 }
 
-.toons.ordered .toon-elf:not(:first-child) {
+.toon-elf.ordered:not(:first-child) {
     background-position: -30px 0;
 }
 
-.toons.ordered .toon-wizard:not(:first-child) {
+.toon-wizard.ordered:not(:first-child) {
     background-position: -45px 0;
 }
 
-.toons.ordered .toon-necromancer:not(:first-child) {
+.toon-necromancer.ordered:not(:first-child) {
     background-position: -60px 0;
 }
 

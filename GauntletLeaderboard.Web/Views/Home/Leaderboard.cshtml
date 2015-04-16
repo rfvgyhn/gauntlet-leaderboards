@@ -50,9 +50,9 @@
                 </td>
             @if (@entry.Leaderboard.Name != "Overall") {
                 <td>
-                    <ul class="toons ordered">
+                    <ul class="toons">
                     @foreach (var toon in entry.Toons) {
-                        <li class="toon toon-@toon.ToString().ToLower()" title="@toon"><span class="sr-only">@toon</span></li>
+                        <li class="toon toon-@toon.ToString().ToLower() @(entry.HasSeperateTeamData ? "ordered" : "")" title="@toon"><span class="sr-only">@toon</span></li>
                     }
                     </ul>
                 </td>
