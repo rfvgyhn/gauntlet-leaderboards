@@ -31,6 +31,7 @@ namespace GauntletLeaderboard.Web.App_Start
 
             var steamApiKey = WebConfigurationManager.AppSettings["steamApiKey"];
             var leaderboardUrl = WebConfigurationManager.AppSettings["leaderboardUrl"];
+            var leaderboardForProfileUrl = WebConfigurationManager.AppSettings["leaderboardForProfileUrl"];
             var profileUrl = WebConfigurationManager.AppSettings["profileUrl"];
             var achievementsUrl = WebConfigurationManager.AppSettings["achievementsUrl"];
             var badgesUrl = WebConfigurationManager.AppSettings["badgesUrl"];
@@ -60,15 +61,20 @@ namespace GauntletLeaderboard.Web.App_Start
                    .As<IProfileRepository>()
                    .InstancePerRequest();
 
+            builder.RegisterType<SteamLeaderboardRepository>()
+                   .WithParameters(new[]
+                   {
+                       new NamedParameter("leaderboardUrl", leaderboardUrl),
+                       new NamedParameter("leaderboardForProfileUrl", leaderboardForProfileUrl),
+                   })
+                   .As<ILeaderboardRepository>()
+                   .InstancePerRequest();
+
             builder.RegisterType<PlayerService>()
                    .As<IPlayerService>()
                    .InstancePerRequest();
 
             builder.RegisterType<LeaderboardService>()
-                   .WithParameters(new[]
-                   {
-                       new NamedParameter("leaderboardUrl", leaderboardUrl)
-                   })
                    .As<ILeaderboardService>()
                    .InstancePerRequest();
 

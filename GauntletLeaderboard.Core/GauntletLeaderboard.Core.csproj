@@ -46,7 +46,9 @@
   <ItemGroup>
     <Compile Include="Data\FileInterestedLeaderboardRepository.cs" />
     <Compile Include="Data\IInterestedLeaderboardRepository.cs" />
+    <Compile Include="Data\ILeaderboardRepository.cs" />
     <Compile Include="Data\IProfileRepository.cs" />
+    <Compile Include="Data\SteamLeaderboardRepository.cs" />
     <Compile Include="Data\SteamProfileRepository.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\NumberExtensions.cs" />

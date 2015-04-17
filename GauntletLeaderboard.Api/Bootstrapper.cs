@@ -20,6 +20,7 @@ namespace GauntletLeaderboard.Api
         {
             var steamApiKey = WebConfigurationManager.AppSettings["steamApiKey"];
             var leaderboardUrl = WebConfigurationManager.AppSettings["leaderboardUrl"];
+            var leaderboardForProfileUrl = WebConfigurationManager.AppSettings["leaderboardForProfileUrl"];
             var profileUrl = WebConfigurationManager.AppSettings["profileUrl"];
             var achievementsUrl = WebConfigurationManager.AppSettings["achievementsUrl"];
             var badgesUrl = WebConfigurationManager.AppSettings["badgesUrl"];
@@ -30,7 +31,7 @@ namespace GauntletLeaderboard.Api
             container.Register<IGroupService, GroupService>();
             container.Register<IPlayerService, PlayerService>();
             container.Register<IProfileRepository>((c, p) => new SteamProfileRepository(steamApiKey, profileUrl, achievementsUrl, badgesUrl, vanityUrl, appId));
-            container.Register<ILeaderboardService>((c, p) => new LeaderboardService(leaderboardUrl, c.Resolve<IInterestedLeaderboardRepository>(), c.Resolve<IProfileRepository>(), c.Resolve<ObjectCache>()));
+            container.Register<ILeaderboardService, LeaderboardService>();
         }
 
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
