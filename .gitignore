@@ -5,7 +5,7 @@ key.config
 
 tmp/
 dist/
-App_Data/*.xml
+**/App_Data/*.xml
 
 # User-specific files
 *.suo

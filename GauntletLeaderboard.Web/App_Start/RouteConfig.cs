@@ -33,6 +33,12 @@ namespace GauntletLeaderboard.Web
             );
 
             routes.MapRoute(
+                name: "total-players",
+                url: "totalplayers",
+                defaults: new { controller = "Home", action = "TotalCurrentlyPlaying" }
+            );
+
+            routes.MapRoute(
                 name: "home",
                 url: "",
                 defaults: new { controller = "Home", action = "Groups" }

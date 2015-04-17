@@ -20,11 +20,11 @@
                 </button>
                 @Html.ActionLink("Gauntlet Leaderboards", "Groups", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+            
             <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    
-                </ul>
+                
                 <div class="navbar-form navbar-right" role="search">
+                    <div id="currently-playing" data-url="@Url.RouteUrl("total-players")">Currently In-Game: <span></span></div>
                     <div class="input-group">
                         <input type="text" class="form-control" id="search" placeholder="Steam ID64 / Custom URL">
                         <span class="input-group-btn">

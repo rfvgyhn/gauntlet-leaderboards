@@ -13,20 +13,29 @@ namespace GauntletLeaderboard.Web.Controllers
 {
     public class HomeController : Controller
     {
-        readonly IGroupService groupService;
-        readonly ILeaderboardService leaderboardService;
+        readonly IGroupService GroupService;
+        readonly ILeaderboardService LeaderboardService;
+        readonly IGameService GameService;
 
-        public HomeController(IGroupService groupService, ILeaderboardService leaderboardService)
+        public HomeController(IGroupService groupService, ILeaderboardService leaderboardService, IGameService gameService)
         {
-            this.groupService = groupService;
-            this.leaderboardService = leaderboardService;
+            this.GroupService = groupService;
+            this.LeaderboardService = leaderboardService;
+            this.GameService = gameService;
+        }
+
+        public async Task<JsonResult> TotalCurrentlyPlaying()
+        {
+            var total = await this.GameService.TotalCurrentlyPlaying();
+
+            return Json(total, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Groups()
         {
             var model = new GroupsViewModel
             {
-                Groups = this.groupService.All()
+                Groups = this.GroupService.All()
             };
 
             return View(model);
@@ -36,9 +45,9 @@ namespace GauntletLeaderboard.Web.Controllers
         {
             var model = new SubGroupsViewModel
             {
-                Groups = this.groupService.All(),
-                Group = this.groupService.GetById(group),
-                SubGroups = this.groupService.GetSubGroupsByGroup(group)
+                Groups = this.GroupService.All(),
+                Group = this.GroupService.GetById(group),
+                SubGroups = this.GroupService.GetSubGroupsByGroup(group)
             };
 
             return View(model);
@@ -46,7 +55,7 @@ namespace GauntletLeaderboard.Web.Controllers
 
         public ActionResult Leaderboards(string group, string subgroup)
         {
-            var leaderboards = this.leaderboardService.GetLeaderboardsBySubGroup(group, subgroup);
+            var leaderboards = this.LeaderboardService.GetLeaderboardsBySubGroup(group, subgroup);
             Group theGroup = null;
             SubGroup subGroup = null;
 
@@ -59,11 +68,11 @@ namespace GauntletLeaderboard.Web.Controllers
 
             var model = new LeaderboardsViewModel
             {
-                Groups = this.groupService.All(),
+                Groups = this.GroupService.All(),
                 Group = theGroup,
                 Leaderboards = leaderboards,
                 SubGroup = subGroup,
-                SubGroups = this.groupService.GetSubGroupsByGroup(group)
+                SubGroups = this.GroupService.GetSubGroupsByGroup(group)
             };
 
             return View(model);
@@ -73,11 +82,11 @@ namespace GauntletLeaderboard.Web.Controllers
         {
             var model = new LeaderboardViewModel
             {
-                Entries = await this.leaderboardService.GetLeaderboardEntries(leaderboardId, page.Value, pageSize.Value),
-                Groups = this.groupService.All(),
-                Leaderboard = this.leaderboardService.GetLeaderboard(leaderboardId),
-                Leaderboards = this.leaderboardService.GetLeaderboardsBySubGroup(group, subgroup),
-                SubGroups = this.groupService.GetSubGroupsByGroup(group)
+                Entries = await this.LeaderboardService.GetLeaderboardEntries(leaderboardId, page.Value, pageSize.Value),
+                Groups = this.GroupService.All(),
+                Leaderboard = this.LeaderboardService.GetLeaderboard(leaderboardId),
+                Leaderboards = this.LeaderboardService.GetLeaderboardsBySubGroup(group, subgroup),
+                SubGroups = this.GroupService.GetSubGroupsByGroup(group)
             };
 
             return View(model);

@@ -23,6 +23,10 @@ ul.nav-pills {
     text-decoration: none;
 }
 
+#navbar {
+    position: relative;
+}
+
 footer {
     text-align: center;
 }
@@ -33,6 +37,10 @@ footer a {
 
 footer a, footer a:hover {
     text-decoration: none;
+}
+
+#currently-playing {
+    display: inline-block;
 }
 
 #leaderboard.inactive table {
