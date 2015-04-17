@@ -42,7 +42,7 @@ namespace GauntletLeaderboard.Core.Services
                            IsActive = g.Any(l => l.IsActive)
                        })
                        .OrderBy(g => g.Name)
-                       .Single();
+                       .SingleOrDefault();
         }
 
         public IEnumerable<SubGroup> GetSubGroupsById(string subGroupId)

@@ -14,6 +14,12 @@ namespace GauntletLeaderboard.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "error",
+                url: "error/{action}",
+                defaults: new { controller = "Error" }
+            );
+
+            routes.MapRoute(
                 name: "player",
                 url: "players/{id}",
                 defaults: new { controller = "Players", action = "Details" },

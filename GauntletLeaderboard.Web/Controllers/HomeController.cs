@@ -43,10 +43,15 @@ namespace GauntletLeaderboard.Web.Controllers
 
         public ActionResult SubGroups(string group)
         {
+            var theGroup = this.GroupService.GetById(group);
+
+            if (theGroup == null)
+                return new HttpNotFoundResult("Group not found");
+
             var model = new SubGroupsViewModel
             {
                 Groups = this.GroupService.All(),
-                Group = this.GroupService.GetById(group),
+                Group = theGroup,
                 SubGroups = this.GroupService.GetSubGroupsByGroup(group)
             };
 
@@ -80,11 +85,16 @@ namespace GauntletLeaderboard.Web.Controllers
 
         public async Task<ActionResult> Leaderboard(string group, string subgroup, int leaderboardId, int? page = 1, int? pageSize = 20)
         {
+            var leaderboard = this.LeaderboardService.GetLeaderboard(leaderboardId);
+
+            if (leaderboard == null)
+                return new HttpNotFoundResult("Leaderboard not found");
+
             var model = new LeaderboardViewModel
             {
                 Entries = await this.LeaderboardService.GetLeaderboardEntries(leaderboardId, page.Value, pageSize.Value),
                 Groups = this.GroupService.All(),
-                Leaderboard = this.LeaderboardService.GetLeaderboard(leaderboardId),
+                Leaderboard = leaderboard,
                 Leaderboards = this.LeaderboardService.GetLeaderboardsBySubGroup(group, subgroup),
                 SubGroups = this.GroupService.GetSubGroupsByGroup(group)
             };
