@@ -1,10 +1,12 @@
-﻿using GauntletLeaderboard.Core.Model;
+﻿using GauntletLeaderboard.Core;
+using GauntletLeaderboard.Core.Model;
 using GauntletLeaderboard.Core.Services;
 using GauntletLeaderboard.Web.Models;
 using GauntletLeaderboard.Web.Models.Home;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -90,9 +92,26 @@ namespace GauntletLeaderboard.Web.Controllers
             if (leaderboard == null)
                 return new HttpNotFoundResult("Leaderboard not found");
 
+            ViewBag.SteamTimedOut = false;
+            IPagedResult<Entry> entries = new PagedResult<Entry>(Enumerable.Empty<Entry>(), page.Value, pageSize.Value, 0);
+
+            try
+            {
+                entries = await this.LeaderboardService.GetLeaderboardEntries(leaderboardId, page.Value, pageSize.Value);
+            }
+            catch (HttpException e)
+            {
+                if (e.ErrorCode == (int)HttpStatusCode.GatewayTimeout)
+                {
+                    ViewBag.SteamTimedOut = true;
+                }
+                else
+                    throw e;
+            }
+
             var model = new LeaderboardViewModel
             {
-                Entries = await this.LeaderboardService.GetLeaderboardEntries(leaderboardId, page.Value, pageSize.Value),
+                Entries = entries,
                 Groups = this.GroupService.All(),
                 Leaderboard = leaderboard,
                 Leaderboards = this.LeaderboardService.GetLeaderboardsBySubGroup(group, subgroup),

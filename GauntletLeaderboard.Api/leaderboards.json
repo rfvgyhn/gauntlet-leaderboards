@@ -194,7 +194,7 @@
         "group": "Colosseum",
         "subGroup": "Season 4",
         "special": "Poison",
-        "isActive": false,
+        "isActive": true,
         "scoreType":  "gold"
     },
     {
@@ -203,7 +203,7 @@
         "group": "Colosseum",
         "subGroup": "Season 4",
         "special": "Poison",
-        "isActive": false,
+        "isActive": true,
         "scoreType":  "gold"
     },
     {
@@ -212,7 +212,7 @@
         "group": "Colosseum",
         "subGroup": "Season 4",
         "special": "Poison",
-        "isActive": false,
+        "isActive": true,
         "scoreType":  "gold"
     },
     {
@@ -221,7 +221,7 @@
         "group": "Colosseum",
         "subGroup": "Season 4",
         "special": "Poison",
-        "isActive": false,
+        "isActive": true,
         "scoreType":  "gold"
     },
     {
@@ -230,7 +230,7 @@
         "group": "Colosseum",
         "subGroup": "Season 4",
         "special": "Poison",
-        "isActive": false,
+        "isActive": true,
         "scoreType":  "gold"
     },
     {
@@ -239,7 +239,7 @@
         "group": "Colosseum",
         "subGroup": "Season 4",
         "special": "Poison",
-        "isActive": false,
+        "isActive": true,
         "scoreType":  "gold"
     },
     {
@@ -248,7 +248,7 @@
         "group": "Colosseum",
         "subGroup": "Season 4",
         "special": "Poison",
-        "isActive": false,
+        "isActive": true,
         "scoreType": "gold"
     },
     {

@@ -13,6 +13,9 @@
 <div id="leaderboard-special">Special: @Model.Leaderboard.Special</div>
 }
 <div id="leaderboard" class="@Model.Status">
+@if (ViewBag.SteamTimedOut) { 
+    <p>Unable to connect to <a href="https://steamstat.us/">Steam</a></p>    
+} else {
     <table class="table table-striped">
         <colgroup>
             <col class="rank" />
@@ -61,5 +64,8 @@
         }
         </tbody>
     </table>
+}
 </div>
-@Html.Partial("_Pager", Model)
+@if (!ViewBag.SteamTimedOut) {
+    @Html.Partial("_Pager", Model)
+}
