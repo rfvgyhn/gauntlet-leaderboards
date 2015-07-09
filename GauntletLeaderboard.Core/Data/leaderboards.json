@@ -257,7 +257,7 @@
         "group": "Colosseum",
         "subGroup": "Season 5",
         "special": "Laser",
-        "isActive": false,
+        "isActive": true,
         "scoreType": "gold"
     },
     {
@@ -266,7 +266,7 @@
         "group": "Colosseum",
         "subGroup": "Season 5",
         "special": "Laser",
-        "isActive": false,
+        "isActive": true,
         "scoreType": "gold"
     },
     {
@@ -275,7 +275,7 @@
         "group": "Colosseum",
         "subGroup": "Season 5",
         "special": "Laser",
-        "isActive": false,
+        "isActive": true,
         "scoreType": "gold"
     },
     {
@@ -284,7 +284,7 @@
         "group": "Colosseum",
         "subGroup": "Season 5",
         "special": "Laser",
-        "isActive": false,
+        "isActive": true,
         "scoreType": "gold"
     },
     {
@@ -293,7 +293,7 @@
         "group": "Colosseum",
         "subGroup": "Season 5",
         "special": "Laser",
-        "isActive": false,
+        "isActive": true,
         "scoreType": "gold"
     },
     {
@@ -302,7 +302,7 @@
         "group": "Colosseum",
         "subGroup": "Season 5",
         "special": "Laser",
-        "isActive": false,
+        "isActive": true,
         "scoreType":  "gold"
     },
     {
@@ -311,7 +311,7 @@
         "group": "Colosseum",
         "subGroup": "Season 5",
         "special": "Laser",
-        "isActive": false,
+        "isActive": true,
         "scoreType": "gold"
     },
     {
